@@ -9,12 +9,13 @@
 
 1. 이 README (전체 지도와 주의점)
 2. `paper/final_paper_text.txt` — 최종 원고 텍스트(대한건축학회 양식 9쪽). 알려진 오류 1건은 아래 "주의점" 참고
-3. `docs/talk_message_design.md` — 발표의 중심 주장과 슬라이드 구조(9장, 300초)
-4. `docs/simulation/aik_experiment_plan.md` — 사전 등록한 실험 계획(E1, E2)
-5. `docs/simulation/ODD.md`, `simulation/vertical_flow.gaml` — 모형 설명과 모형 코드
-6. `analysis/outputs/aik/` — 실제 시뮬레이션 결과 CSV(아래 데이터 사전)
-7. `presentation/plans/*.html` — 시각화 기획안 4개(브라우저로 열면 그림이 보입니다)
-8. `poster/` 와 `src/` — 부록용 점 구름 포스터와 그 코드
+3. **`presentation/plans/slide_content_master.md`** — **최신 발표 논리·9페이지 시간표·페이지별 기획·다음 작업(PAGE 04)**. 다른 발표 기획 문서와 충돌하면 발표 구성에 한하여 이 문서를 우선합니다.
+4. `docs/talk_message_design.md` — 이전 승인안과 이론·메시지 기획 이력(현재 시간표는 위 최신 문서 참고)
+5. `docs/simulation/aik_experiment_plan.md` — 사전 등록한 실험 계획(E1, E2)
+6. `docs/simulation/ODD.md`, `simulation/vertical_flow.gaml` — 모형 설명과 모형 코드
+7. `analysis/outputs/aik/` — 실제 시뮬레이션 결과 CSV(아래 데이터 사전)
+8. `presentation/plans/*.html` — 기존 시각화 기획안(브라우저에서 확인, 최신 구성과 달라질 수 있음)
+9. `poster/` 와 `src/` — 부록용 점 구름 포스터와 그 코드
 
 ## 연구 개요
 
@@ -55,10 +56,10 @@
 
 **층 번호 규칙**: 경계 b는 `b`층→`b+1`층(S00 = 1층). 경계 b는 도착층(`b+1`)의 줄에 놓습니다.
 
-## 발표 설계 (`docs/talk_message_design.md`)
+## 발표 설계 (현행 기준: `presentation/plans/slide_content_master.md`)
 
-- 중심 주장: "건물 구조는 사람이 얼마나 들어오는지를 정하고, 그 사람들이 얼마나 위까지 올라가는지는 위층에 무엇이 있느냐가 정한다." 강도는 힐리어 이론의 **조건부 확장**.
-- 논문 소제목 순서의 9장 구성, 합계 300초. 각 장의 제목은 "무엇을 알아보려고 이 장을 뒀는지"(목적), 그 아래에 결과(답).
+- **현재 중심 주장**: "수직동선은 기본적인 상행 흐름을 제약하고, 프로그램의 유인력과 배치는 그 흐름이 상층부까지 이어지는 양상을 변화시킨다." 가상 모형의 **조건부 해석**이다.
+- 9장, 합계 300초. 현재 시간표: **10 / 30 / 30 / 40 / 40 / 50 / 40 / 40 / 20초**. 표지·서론·이론의 콘텐츠 기획을 완료(잠정)했고, **다음 진행은 4페이지 연구 방법**이다. 이전 메시지 설계문과 HTML은 이력으로 보존한다.
 
 ## 시각화 방향 (`presentation/`)
 
