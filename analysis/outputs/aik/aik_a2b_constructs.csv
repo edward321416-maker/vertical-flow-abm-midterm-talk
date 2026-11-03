@@ -1,0 +1,19 @@
+cell_id,exp,pattern,gamma,circ,predictor,rate_ratio_per_0.1,dev_explained
+aik_e1_g2_cont,e1,"",2,cont,adjacent contrast (Delta),1.02373244528216,0.159958937822918
+aik_e1_g2_cont,e1,"",2,cont,upper-floor program,1.0750493006937,0.705546594472473
+aik_e1_g2_cont,e1,"",2,cont,mean program above boundary,1.22613458844618,0.355452177531912
+aik_e1_g2_frag,e1,"",2,frag,adjacent contrast (Delta),1.02546762044469,0.217697296828003
+aik_e1_g2_frag,e1,"",2,frag,upper-floor program,1.06988094048853,0.669213705432886
+aik_e1_g2_frag,e1,"",2,frag,mean program above boundary,1.26969038309395,0.567012436234655
+aik_e1_g4_cont,e1,"",4,cont,adjacent contrast (Delta),1.03442459726226,0.102205537786509
+aik_e1_g4_cont,e1,"",4,cont,upper-floor program,1.13578812565089,0.601230739337442
+aik_e1_g4_cont,e1,"",4,cont,mean program above boundary,1.49775922530051,0.397414074470003
+aik_e1_g4_frag,e1,"",4,frag,adjacent contrast (Delta),1.04265713199581,0.164017935549757
+aik_e1_g4_frag,e1,"",4,frag,upper-floor program,1.13284843507204,0.63995330472861
+aik_e1_g4_frag,e1,"",4,frag,mean program above boundary,1.52021902521955,0.490761211554669
+aik_e1_g8_cont,e1,"",8,cont,adjacent contrast (Delta),1.03993893723066,0.039032984595459
+aik_e1_g8_cont,e1,"",8,cont,upper-floor program,1.23421444397879,0.457612758107742
+aik_e1_g8_cont,e1,"",8,cont,mean program above boundary,1.83109227642974,0.293754656229126
+aik_e1_g8_frag,e1,"",8,frag,adjacent contrast (Delta),1.04686811335219,0.0637710971262002
+aik_e1_g8_frag,e1,"",8,frag,upper-floor program,1.21354512815192,0.471264091127366
+aik_e1_g8_frag,e1,"",8,frag,mean program above boundary,1.92333225516611,0.404784435568022

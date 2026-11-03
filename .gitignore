@@ -1,0 +1,4 @@
+node_modules/
+.gstack_execution_log.jsonl
+*.log
+__pycache__/

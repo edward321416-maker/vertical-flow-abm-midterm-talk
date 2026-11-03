@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>중간발표 구성안</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap">
+<style>
+/* 레이아웃: 위에서 아래로 읽는 한 칼럼 문서. 주장 한 줄, 5분 시간표, 논문 소제목 순서의 슬라이드 9장(각 장에 시각화 하나), 숫자 감사, 다음 단계. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #14202b;
+  --muted: #5a6a77;
+  --line: #d7dee3;
+  --accent: #1f5fbf;
+  --accent-soft: #e4edf9;
+  --warn: #8a5a00;
+  --warn-soft: #fbf1dc;
+  --font-body: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --font-claim: "Noto Serif KR", "Batang", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171e; --surface: #17222b; --fg: #e5ebf0; --muted: #9fb0bd;
+    --line: #2b3a46; --accent: #7fb0f5; --accent-soft: #1c2f45;
+    --warn: #e6bd6a; --warn-soft: #32280f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171e; --surface: #17222b; --fg: #e5ebf0; --muted: #9fb0bd;
+  --line: #2b3a46; --accent: #7fb0f5; --accent-soft: #1c2f45;
+  --warn: #e6bd6a; --warn-soft: #32280f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+h1 { font-size: 1.5rem; line-height: 1.35; margin: 0; text-wrap: balance; }
+h2 { font-size: 1.1rem; margin: 0 0 12px; text-wrap: balance; }
+p { margin: 0; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.claim {
+  font-family: var(--font-claim); font-weight: 700; font-size: 1.35rem; line-height: 1.6;
+  text-wrap: balance; padding: 20px 0; border-top: 2px solid var(--fg); border-bottom: 1px solid var(--line);
+}
+.claim small { display: block; font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+.bar { display: flex; gap: 3px; height: 38px; }
+.bar a {
+  flex-grow: var(--s); flex-basis: 0; min-width: 0; background: var(--accent-soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700;
+  text-decoration: none; border-radius: 2px; font-variant-numeric: tabular-nums;
+}
+.bar a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bar-cap { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.8rem; margin-top: 6px; font-variant-numeric: tabular-nums; }
+ol.slides { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+ol.slides > li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 14px; padding: 18px 0; border-top: 1px solid var(--line); }
+ol.slides > li:last-child { border-bottom: 1px solid var(--line); }
+.no { font-weight: 700; font-size: 1.5rem; line-height: 1.2; color: var(--accent); font-variant-numeric: tabular-nums; }
+.no span { display: block; font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+.sec { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em; }
+.slide-title { font-weight: 700; font-size: 1.05rem; line-height: 1.5; text-wrap: balance; }
+dl { margin: 8px 0 0; display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 4px 10px; font-size: 0.93rem; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+code { font-family: ui-monospace, Consolas, monospace; font-size: 0.82rem; background: var(--accent-soft); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; }
+.box.warn { background: var(--warn-soft); border-color: transparent; }
+.box.warn h2 { color: var(--warn); }
+ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+.scroll { overflow-x: auto; }
+@media (max-width: 480px) {
+  ol.slides > li { grid-template-columns: 1fr; }
+  .no { display: flex; align-items: baseline; gap: 10px; font-size: 1.25rem; }
+  .no span { display: inline; }
+}
+</style>
+</head><body>
+
+<main>
+  <header>
+    <h1>중간발표 구성안</h1>
+    <p class="meta">2026-11-05 중간발표 · 5분 · 16:9 · 본편 9장 · 논문 소제목 순서 · 개정 4판</p>
+  </header>
+
+  <section class="claim" aria-label="발표의 중심 주장">
+    <small>끝에 청중이 기억할 한 줄</small>
+    건물 구조는 사람이 얼마나 들어오는지를 정하고, 그 사람들이 얼마나 위까지 올라가는지는 위층에 무엇이 있느냐가 정한다.
+  </section>
+
+  <section aria-labelledby="t">
+    <h2 id="t">5분 시간표 (총 300초)</h2>
+    <div class="bar" role="list">
+      <a href="#s1" style="--s:10" role="listitem" aria-label="1번 10초">1</a>
+      <a href="#s2" style="--s:30" role="listitem" aria-label="2번 30초">2</a>
+      <a href="#s3" style="--s:35" role="listitem" aria-label="3번 35초">3</a>
+      <a href="#s4" style="--s:35" role="listitem" aria-label="4번 35초">4</a>
+      <a href="#s5" style="--s:45" role="listitem" aria-label="5번 45초">5</a>
+      <a href="#s6" style="--s:50" role="listitem" aria-label="6번 50초">6</a>
+      <a href="#s7" style="--s:40" role="listitem" aria-label="7번 40초">7</a>
+      <a href="#s8" style="--s:35" role="listitem" aria-label="8번 35초">8</a>
+      <a href="#s9" style="--s:20" role="listitem" aria-label="9번 20초">9</a>
+    </div>
+    <div class="bar-cap"><span>0:00</span><span>5:00</span></div>
+  </section>
+
+  <section aria-labelledby="l">
+    <h2 id="l">슬라이드 9장: 논문 소제목 순서, 시각화는 각 장에 하나</h2>
+    <p class="meta" style="margin-bottom:8px">제목은 "무엇을 알아보려고 이 장을 두었는지"입니다. 바로 아래 「답」이 그 결과이고, 앞 장의 답이 다음 장을 두는 이유가 됩니다.</p>
+    <p class="meta" style="margin-bottom:12px">시각화는 표지를 포함해 매 장에 둡니다. 표지만 설계 건물 렌더이고, 나머지는 모두 실제 시뮬레이션 데이터(CSV)로 새로 그립니다. 박스와 화살표 도식은 쓰지 않습니다. 논문의 4분할 그림은 5분 발표에 정보가 너무 많아서 장마다 하나의 메시지로 줄여 다시 만듭니다.</p>
+    <ol class="slides">
+      <li id="s1">
+        <div class="no">1<span>10초</span></div>
+        <div>
+          <p class="sec">표지</p>
+          <p class="slide-title">제목, 부제, 발표자 봉성현 (Bong Seonghyun), Prof. Kim, 건축설계스튜디오8, 2026-11-05</p>
+          <dl><dt>시각화</dt><dd>설계 건물 조감도 렌더(Blender 렌더, 합성 시뮬레이션 캡처 아님). 표지에 「설계 대상 건물이며 시뮬레이션 대상이 아님」이라고 한 줄 밝힙니다. 파일: <code><project root>/발표자료\assets\건물_조감도_렌더.jpg</code></dd></dl>
+        </div>
+      </li>
+      <li id="s2">
+        <div class="no">2<span>30초</span></div>
+        <div>
+          <p class="sec">1. 서론</p>
+          <p class="slide-title">위층이 비는 원인을 가르려면, 구조와 매장을 따로 움직여 봐야 합니다</p>
+          <dl><dt>시각화</dt><dd>건물 단면처럼 세운 층별 막대. 1층에 들어온 사람을 100으로 두고 층마다 폭이 줄어 최상층에 3.6이 남는 모습. 자료: <code>aik_a1_profile.csv</code></dd><dt>답</dt><dd>아직 모릅니다. 현장에서는 구조와 매장이 함께 움직여서 원인을 가를 수 없습니다.</dd><dt>말할 말</dt><dd>위층으로 갈수록 사람이 줄어듭니다. 구조 탓인지 매장 탓인지 가르려면 둘을 따로 바꿔 볼 환경이 필요합니다.</dd></dl>
+        </div>
+      </li>
+      <li id="s3">
+        <div class="no">3<span>35초</span></div>
+        <div>
+          <p class="sec">2. 이론적 틀 및 연구 가설</p>
+          <p class="slide-title">두 몫을 구분할 기준이 필요해서, 힐리어의 구조·유인 틀을 빌렸습니다</p>
+          <dl><dt>시각화</dt><dd>감소선 두 개를 한 그래프에. 유인 없음(γ=0)은 구조만 만든 기본 흐름, 앵커를 얹은 경우(γ=4, 균등 배치)는 그 흐름이 위로 들리는 모습. 이론의 두 요소를 실데이터로 보여 줍니다. 자료: <code>aik_e2_profile.csv</code></dd><dt>답</dt><dd>구조가 기본 흐름을 만들고 유인은 그 흐름을 키운다. 이 틀이 두 몫을 가르는 기준이 됩니다.</dd><dt>말할 말</dt><dd>이 틀은 길 위에서 확인된 것입니다. 위로 쌓은 건물에서도 같은 역할 분담이 나오는지가 이 연구의 질문입니다.</dd></dl>
+        </div>
+      </li>
+      <li id="s4">
+        <div class="no">4<span>35초</span></div>
+        <div>
+          <p class="sec">3. 연구 방법</p>
+          <p class="slide-title">두 요인을 따로 움직이기 위해, 가상 건물에서 동선과 앵커만 바꿨습니다</p>
+          <dl><dt>시각화</dt><dd>앵커 배치 4종(최상층 집중, 저층 집중, 균등, 징검다리)을 층별 막대로 나란히 보여 주는 작은 그래프 4개. 아래에 실험 표 한 줄: 실험 1(1,600회), 실험 2(1,000회). 8번 슬라이드의 행 이름으로 다시 쓰입니다.</dd><dt>답</dt><dd>나머지는 모두 고정해서 구조와 앵커 두 요인의 몫만 남깁니다. 앵커 총량도 같게 맞춥니다.</dd><dt>말할 말</dt><dd>지상 9개 층 가상 건물입니다. 바꾼 것은 동선(연속형, 분절형)과 앵커의 세기와 위치뿐입니다.</dd></dl>
+        </div>
+      </li>
+      <li id="s5">
+        <div class="no">5<span>45초</span></div>
+        <div>
+          <p class="sec">4.1 프로그램 중립 기준선 (RQ1)</p>
+          <p class="slide-title">구조만의 몫을 알아보려고, 매장 효과를 끈 상태를 먼저 봤습니다</p>
+          <dl><dt>시각화</dt><dd>층별 상향 이동 인원 감소선(로그 눈금). 연속형 12,346 → 448명, 분절형 9,802 → 408명. 두 선 사이 간격에 −20.6% 표시. 자료: <code>aik_a1_profile.csv</code></dd><dt>답</dt><dd>구조만으로 최상층에는 1층의 3.6%만 도착합니다. 동선을 꼬면 들어오는 사람이 처음부터 20.6% 줄어듭니다.</dd><dt>주장 연결</dt><dd>「구조가 얼마나 들어오는지를 정한다」</dd></dl>
+        </div>
+      </li>
+      <li id="s6">
+        <div class="no">6<span>50초</span></div>
+        <div>
+          <p class="sec">4.2 인접층 대비와 목적지 유인력 (RQ2)</p>
+          <p class="slide-title">매장 효과를 켰을 때 무엇이 사람을 위로 올리는지 알아보려고, 층 사이 차이와 바로 위층 앵커를 견줬습니다</p>
+          <dl><dt>시각화</dt><dd>가로 막대 3개: 바로 위층 앵커 46~71%, 상층 평균 29~57%, 인접층 격차 4~22%(범위 막대). 자료: <code>aik_a2b_constructs.csv</code></dd><dt>답</dt><dd>바로 위층에 목적지가 있느냐가 거의 다 정합니다. 아래층보다 위층을 조금 더 매력적으로 꾸미는 방법은 효과가 작습니다.</dd><dt>주장 연결</dt><dd>「위까지 올라가는 것은 위층이 정한다」</dd></dl>
+        </div>
+      </li>
+      <li id="s7">
+        <div class="no">7<span>40초</span></div>
+        <div>
+          <p class="sec">4.3 수직동선 마찰의 조절 효과 (RQ3)</p>
+          <p class="slide-title">구조의 몫과 매장의 몫이 서로 깎는지 알아보려고, 동선을 꼬고 앵커 효과를 다시 쟀습니다</p>
+          <dl><dt>시각화</dt><dd>잠식률을 신뢰구간과 함께 보여 주는 점 그래프. γ=2 6.7%, γ=4 0.8%, γ=8 1.7%. 0선 기준으로 γ=4, 8은 0을 포함. 자료: <code>aik_a3_moderation.csv</code></dd><dt>답</dt><dd>거의 깎이지 않습니다. 약한 앵커(γ=2)에서만 6.7%가 깎였습니다. 두 몫은 따로 움직입니다.</dd></dl>
+        </div>
+      </li>
+      <li id="s8">
+        <div class="no">8<span>35초</span></div>
+        <div>
+          <p class="sec">4.4 한정된 앵커 하에서의 배치 (RQ4)</p>
+          <p class="slide-title">앵커 총량이 정해졌을 때 어디에 둘지 정하려고, 배치 4종을 견줬습니다</p>
+          <dl><dt>시각화</dt><dd>배치 4종 가로 막대. 최상층 도달률(58.7, 14.0, 5.9, 1.5%)과 인원(9,112 / 2,197 / 975 / 286명). 행 이름은 4번 슬라이드의 작은 층별 막대. 자료: <code>aik_a4_reach.csv</code>, <code>aik_e2_profile.csv</code></dd><dt>답</dt><dd>같은 총량이어도 최상층 도달이 58.7%에서 1.5%까지 갈립니다. 저층에 몰면 4층 위로는 거의 오르지 않습니다.</dd><dt>말할 말</dt><dd>이 결과는 앵커 매력이 지수형이라는 조건에서 나온 것입니다.</dd></dl>
+        </div>
+      </li>
+      <li id="s9">
+        <div class="no">9<span>20초</span></div>
+        <div>
+          <p class="sec">5. 논의 및 결론</p>
+          <p class="slide-title">이 결과가 힐리어 이론을 어디까지 넓히는지 말하려고, 두 몫을 한 그림에 합쳤습니다</p>
+          <dl><dt>시각화</dt><dd>하나로 합친 그림. 앵커 세기(γ)에 따라 들어오는 인원(1번 경계)과 최상층 도달 인원(8번 경계)을 연속형과 분절형으로 나란히. 구조는 간격을, 프로그램은 기울기를 만든다는 것을 한 번에 보임. 같은 원자료를 다시 집계해서 만듭니다.</dd><dt>답</dt><dd>이론은 조건부로 확장됩니다. 구조는 들어오는 인원을, 위층 프로그램은 올라가는 높이를 정합니다.</dd><dt>말할 말</dt><dd>가상 건물이고, 지수형 유인이며, 포만과 혼잡이 없고, 구조는 두 가지만 바꿨습니다. 다음에는 구조 수준을 늘려 직접 검정합니다.</dd></dl>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="box warn" aria-labelledby="a">
+    <h2 id="a">숫자 감사 결과 (논문 PDF 대 원자료)</h2>
+    <ul class="plain">
+      <li><strong>어긋난 값 1개</strong>: 8번 경계 연속형 유량. 논문 본문 446명, 원자료 447.8명(448). 논문 그림 1에는 448로 적혀 있어서 본문만 틀렸습니다. 슬라이드에는 448을 쓰고, 논문 본문은 고쳐야 합니다.</li>
+      <li><strong>일치 확인</strong>: 12,346 → 9,802(−20.6%), RUI 0.036과 0.042, AUFR 범위, F 검정, 설명 비중 4~22 / 29~57 / 46~71%, 잠식률 6.7 / 0.8 / 1.7%, 배치 4종의 도달 지수와 인원, Holm 비교값.</li>
+      <li><strong>아직 못 맞춘 값</strong>: γ별 첫 경계 감소율(18.5 / 14.8 / 9.2%). 셀 단위 파일로 시각화 작업 때 확인합니다.</li>
+    </ul>
+  </section>
+
+  <section class="box" aria-labelledby="b">
+    <h2 id="b">Q&amp;A 백업 슬라이드 (발표 시간에는 쓰지 않음)</h2>
+    <ul class="plain">
+      <li>통계 검정 세부: 로그선형 F 검정, Holm 보정, 부트스트랩 신뢰구간</li>
+      <li>위층과 아래층 매장의 분리 효과(+0.130 대 -0.077)</li>
+      <li>두타몰 실측 AUFR과의 비교</li>
+      <li>γ별 상세 표</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="p">
+    <h2 id="p">다음 단계: 시각화를 한 장씩 만들어 승인받기</h2>
+    <div class="scroll">
+      <table>
+        <tr><th>순서</th><th>하는 일</th></tr>
+        <tr><td>1</td><td>5번 슬라이드의 감소선부터 한 장을 만들어 보여 드립니다. 승인 후 다음 장으로 넘어갑니다(그림은 한 장씩 승인 규칙).</td></tr>
+        <tr><td>2</td><td>Modal에서 고해상도로 그리고 규칙 위반(글자 넘침, 충돌)을 자동 검사합니다.</td></tr>
+        <tr><td>3</td><td>클라우드 세션(최고 모델, 최고 effort)이 장별 문구와 대본을 병렬로 씁니다. 저장소 업로드는 논문 폴더와 원자료만 올립니다.</td></tr>
+        <tr><td>4</td><td>숫자 감사, 예상 질문 15개 리허설, 5분 타이밍 실측.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="box warn" aria-labelledby="d">
+    <h2 id="d">확인 부탁드릴 것</h2>
+    <ul class="plain">
+      <li><strong>표지 조감도</strong>: 설계 건물 렌더를 표지에 써도 괜찮은지. 논문의 시뮬레이션은 일반화한 9층 가상 건물이라서, 이 건물이 시뮬레이션 대상으로 읽히지 않게 캡션을 붙입니다.</li>
+      <li><strong>Prof. Kim 표기</strong>: 「지도교수 Prof. Kim」처럼 직함을 붙일지, 성만 쓸지.</li>
+    </ul>
+  </section>
+</main>
+</body></html>
