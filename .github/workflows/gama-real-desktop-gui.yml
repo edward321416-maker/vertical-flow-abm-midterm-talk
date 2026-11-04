@@ -1,0 +1,106 @@
+name: Authentic GAMA Desktop GUI screenshot (virtual display)
+
+on:
+  push:
+    branches: [research/real-gama-visual-proof-20261104]
+
+permissions:
+  contents: read
+
+jobs:
+  authentic-desktop-gui:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout visual proof branch
+        uses: actions/checkout@v4
+
+      - name: JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install virtual X display and screenshot tools
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq xvfb xauth xdotool scrot libgtk-3-0 libxtst6 libxss1 libgl1
+
+      - name: Download official GAMA 2025.06.4 and verify SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/gama-desktop
+          curl -fsSL --retry 3 --connect-timeout 25 --max-time 230 \
+            -o /tmp/gama-desktop/gama.deb \
+            https://github.com/gama-platform/gama/releases/download/2025.06.4/GAMA_2025.06.4_Linux.deb
+          echo "c787f16a0044a135debe925cf39f1642163894bb1471d07a91e9e8a048e3b497  /tmp/gama-desktop/gama.deb" | sha256sum -c -
+          mkdir -p /tmp/gama-desktop/runtime
+          dpkg-deb -x /tmp/gama-desktop/gama.deb /tmp/gama-desktop/runtime
+          find /tmp/gama-desktop/runtime -name Gama -type f -print | tee /tmp/gama-desktop/launchers.txt
+          test -s /tmp/gama-desktop/launchers.txt
+
+      - name: Generate a real model input and launch GUI experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=/tmp/gama-desktop
+          python3 simulation/visual_probe/prepare_case.py \
+            "$BASE/case" "$GITHUB_WORKSPACE/simulation/visual_probe/vertical_flow_capture.gaml"
+          python3 - <<'PY'
+          from pathlib import Path
+          source = Path("simulation/visual_probe/vertical_flow_capture.gaml").read_text()
+          original='string cell_file <- "";'
+          assert source.count(original) == 1
+          target = Path("/tmp/gama-desktop/case/inputs/cell.csv")
+          assert target.exists()
+          source = source.replace(original, f'string cell_file <- "{target}";')
+          out = Path("/tmp/gama-desktop/visual_gui.gaml")
+          out.write_text(source)
+          print("Desktop experiment model:",out)
+          PY
+          mkdir -p "$BASE/screenshots" "$BASE/workspace"
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp > "$BASE/xvfb.log" 2>&1 &
+          export DISPLAY=:99 GTK_THEME=Adwaita GDK_BACKEND=x11
+          sleep 4
+          GUI="$(head -n1 "$BASE/launchers.txt")"
+          chmod +x "$GUI"
+          echo "START GUI: $GUI"
+          echo "MODEL: $BASE/visual_gui.gaml#visual_capture"
+          "$GUI" -data "$BASE/workspace" "$BASE/visual_gui.gaml#visual_capture" > "$BASE/gui.log" 2>&1 &
+          GUI_PID=$!
+          echo "GAMA_PID=$GUI_PID"
+          sleep 35
+          echo "WINDOWS:" | tee "$BASE/windows.txt"
+          xdotool search --onlyvisible --name . getwindowname 2>/dev/null | tee -a "$BASE/windows.txt" || true
+          echo "PROCESS:"
+          ps -p "$GUI_PID" -o pid,stat,etime,args || true
+          scrot "$BASE/screenshots/desktop_after_35s.png"
+          sleep 16
+          scrot "$BASE/screenshots/desktop_after_51s.png"
+          xdotool search --onlyvisible --name 'GAMA\|Simulation\|vertical_gui' > "$BASE/window_ids.txt" 2>/dev/null || true
+          echo "WINDOW ID COUNT: $(wc -l < "$BASE/window_ids.txt")"
+          if kill -0 "$GUI_PID" 2>/dev/null; then
+            echo "GUI STILL ALIVE" | tee "$BASE/gui_status.txt"
+          else
+            echo "GUI EXITED" | tee "$BASE/gui_status.txt"
+          fi
+          kill "$GUI_PID" 2>/dev/null || true
+          echo "Capture step completed"
+
+      - name: Upload raw untouched GUI screenshots and run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gama-2025-06-4-authentic-desktop-x11
+          path: |
+            /tmp/gama-desktop/screenshots/*.png
+            /tmp/gama-desktop/gui.log
+            /tmp/gama-desktop/xvfb.log
+            /tmp/gama-desktop/windows.txt
+            /tmp/gama-desktop/window_ids.txt
+            /tmp/gama-desktop/gui_status.txt
+            /tmp/gama-desktop/launchers.txt
+            /tmp/gama-desktop/case/inputs/cell.csv
+          retention-days: 7
+          if-no-files-found: warn
