@@ -126,13 +126,34 @@ jobs:
           sleep 4
           GUI="$(head -n1 "$BASE/launchers.txt")"
           chmod +x "$GUI"
-          echo "GAMA GUI PHASE 1: initialize authentic workspace"
-          "$GUI" -clean > "$BASE/gui_bootstrap.log" 2>&1 &
-          BOOT_PID=$!
+          echo "GAMA GUI: model inside real Eclipse project; automatic visual experiment"
+          PROJECT_DIR="$BASE/VerticalFlowVisualProof"
+          mkdir -p "$PROJECT_DIR"
+          cat > "$PROJECT_DIR/.project" <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <projectDescription>
+            <name>VerticalFlowVisualProof</name>
+            <comment></comment>
+            <projects></projects>
+            <buildSpec></buildSpec>
+            <natures></natures>
+          </projectDescription>
+          EOF
+          python3 - "$BASE/visual_gui.gaml" "$PROJECT_DIR/vertical_flow_capture.gaml" <<'PY'
+          from pathlib import Path
+          import sys
+          src=Path(sys.argv[1]).read_text()
+          needle='experiment visual_capture type: gui {'
+          assert src.count(needle)==1
+          src=src.replace(needle,'experiment visual_capture type: gui autorun: true {\\n    float minimum_cycle_duration <- 0.05 #s;')
+          Path(sys.argv[2]).write_text(src)
+          PY
+          echo "PROJECT=$PROJECT_DIR/vertical_flow_capture.gaml"
+          "$GUI" -clean "$PROJECT_DIR/vertical_flow_capture.gaml#visual_capture" > "$BASE/gui.log" 2>&1 &
+          GUI_PID=$!
+          echo "GAMA_PID=$GUI_PID"
           sleep 20
           scrot "$BASE/screenshots/workspace_dialog_initial.png"
-          echo "VISIBLE WINDOWS BEFORE WORKSPACE ACCEPT:" > "$BASE/windows_before.txt"
-          xdotool search --onlyvisible --name . getwindowname 2>/dev/null >> "$BASE/windows_before.txt" || true
           xdotool mousemove 856 478 click 1 key ctrl+a
           xdotool type --clearmodifiers --delay 4 "$BASE/native_workspace"
           xdotool mousemove 1197 588 click 1
@@ -140,49 +161,19 @@ jobs:
           scrot "$BASE/screenshots/workspace_after_enter_1.png"
           xdotool key Return
           sleep 38
-          scrot "$BASE/screenshots/phase1_workspace_initialized.png"
-          echo "Registered project directories:"
-          find "$BASE/native_workspace" -maxdepth 5 -name .project -type f -print | tee "$BASE/projects.txt"
-          if [ ! -s "$BASE/projects.txt" ]; then
-            echo "GAMA did not initialize any Eclipse model projects"
-            exit 7
-          fi
-          kill "$BOOT_PID" 2>/dev/null || true
-          sleep 4
-          echo "GAMA GUI PHASE 2: open model WITHIN a registered project"
-          # A model outside the workspace triggers a GAMA 2025.06.4
-          # UnclassifiedProject import bug, so copy into a registered
-          # built-in model project in this disposable CI workspace.
-          PROJECT_DESC="$(head -n1 "$BASE/projects.txt")"
-          PROJECT_DIR="$(dirname "$PROJECT_DESC")"
-          MODEL_IN_PROJECT="$PROJECT_DIR/vertical_flow_capture.gaml"
-          python3 - "$BASE/visual_gui.gaml" "$MODEL_IN_PROJECT" <<'PY'
-          from pathlib import Path
-          import sys
-          source=Path(sys.argv[1]).read_text()
-          needle='experiment visual_capture type: gui {'
-          assert source.count(needle)==1
-          Path(sys.argv[2]).write_text(source.replace(needle,'experiment visual_capture type: gui autorun: true {'))
-          PY
-          echo "MODEL_IN_PROJECT=$MODEL_IN_PROJECT"
-          "$GUI" -data "$BASE/native_workspace" "$MODEL_IN_PROJECT#visual_capture" > "$BASE/gui.log" 2>&1 &
-          GUI_PID=$!
-          echo "GAMA_PID=$GUI_PID"
-          sleep 32
-          scrot "$BASE/screenshots/phase2_experiment_after_32s.png"
+          scrot "$BASE/screenshots/real_gama_experiment_initial.png"
           echo "WINDOWS:" | tee "$BASE/windows.txt"
           xdotool search --onlyvisible --name . getwindowname 2>/dev/null | tee -a "$BASE/windows.txt" || true
-          sleep 15
-          scrot "$BASE/screenshots/phase2_experiment_after_47s.png"
-          xdotool search --onlyvisible --name 'Gama' > "$BASE/window_ids.txt" 2>/dev/null || true
-          echo "WINDOW ID COUNT: $(wc -l < "$BASE/window_ids.txt")"
+          sleep 17
+          scrot "$BASE/screenshots/real_gama_experiment_running.png"
+          xdotool search --onlyvisible --name Gama > "$BASE/window_ids.txt" 2>/dev/null || true
           if kill -0 "$GUI_PID" 2>/dev/null; then
             echo "GUI STILL ALIVE" | tee "$BASE/gui_status.txt"
           else
             echo "GUI EXITED" | tee "$BASE/gui_status.txt"
           fi
           kill "$GUI_PID" 2>/dev/null || true
-          echo "Both desktop phases completed"
+          echo "Actual GAMA GUI capture step finished"
 
       - name: Upload raw untouched GUI screenshots and run logs
         if: always()
