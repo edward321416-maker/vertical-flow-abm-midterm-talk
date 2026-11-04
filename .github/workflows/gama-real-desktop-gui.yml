@@ -146,6 +146,22 @@ jobs:
           xdotool key Return
           sleep 15
           scrot "$BASE/screenshots/workspace_after_enter_2.png"
+          # Once the native workspace is initialized, GAMA prompts that the
+          # external .gaml model should be imported into a model project.
+          # Confirm the actual import wizard; do not simulate the GUI image.
+          xdotool key Return
+          sleep 13
+          scrot "$BASE/screenshots/after_model_import_confirm.png"
+          xdotool key Return
+          sleep 16
+          scrot "$BASE/screenshots/after_model_import_second.png"
+          # Try expanding the GAMA application window (not the display itself).
+          xdotool search --onlyvisible --name 'Gama' > "$BASE/window_ids.txt" 2>/dev/null || true
+          while IFS= read -r WID; do
+            xdotool windowsize "$WID" 1820 995 2>/dev/null || true
+          done < "$BASE/window_ids.txt"
+          sleep 12
+          scrot "$BASE/screenshots/gama_desktop_model_82s.png"
           echo "WINDOWS:" | tee "$BASE/windows.txt"
           xdotool search --onlyvisible --name . getwindowname 2>/dev/null | tee -a "$BASE/windows.txt" || true
           echo "PROCESS:"
