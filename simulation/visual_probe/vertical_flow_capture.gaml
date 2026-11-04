@@ -755,6 +755,75 @@ experiment visual_capture type: gui {
                     at: {9.0, 97.0} size: 7 color: rgb(100,100,105);
             }
         }
+
+        /*
+         * Data-driven schematic mall scene. Every occupied-floor count and
+         * crossing U(b) is read from the live GAML model. Shop shells,
+         * escalators and dots are explanatory graphics, not XY trajectories.
+         * One blue dot represents approximately 5 people on the floor.
+         */
+        display "Mall_Scene" type: 2d background: rgb(248,250,253) {
+            graphics "actual_state_mall_scene" {
+                draw rectangle(100.0, 100.0) at: {50.0, 50.0} color: rgb(247,249,253);
+                draw rectangle(100.0, 11.0) at: {50.0, 5.5} color: rgb(22,37,59);
+                draw "GAMA 2025.06.4 | LIVE VERTICAL FLOW" at: {3.0,6.5} size: 9.5 color: rgb(250,252,255);
+                draw ("GAMMA " + string(p_gamma) + " / TICK " + string(cycle)) at: {58.0,6.5} size: 7 color: rgb(158,211,251);
+                draw "RETAIL VERTICAL SECTION" at: {9.0,14.1} size: 7 color: rgb(25,44,69);
+                draw "9 synthetic floors - actual floor occupancy / conceptual layout" at: {9.0,17.7} size: 5.7 color: rgb(88,104,124);
+
+                // Dark rear core gives the scene a sectional depth cue.
+                draw rectangle(66.0, 71.0) at: {40.5,53.0} color: rgb(218,226,237);
+                draw rectangle(60.0, 69.0) at: {42.5,52.5} color: rgb(244,248,251);
+                // Repeated level bays, simple shopfronts and live density glyphs.
+                loop f from: 0 to: 8 {
+                    float yy <- 20.2 + (8 - f) * 7.35;
+                    int present <- sum(visitor where (each.cur_floor = f) collect each.persons);
+                    draw rectangle(59.0, 6.1) at: {42.5, yy} color: rgb(232,237,245);
+                    // Glass shop bays: illustrative architectural context.
+                    draw rectangle(16.2, 4.8) at: {21.5,yy} color: rgb(249,248,246);
+                    draw rectangle(16.2, 4.8) at: {39.0,yy} color: rgb(246,249,252);
+                    draw rectangle(16.2, 4.8) at: {56.5,yy} color: rgb(249,248,246);
+                    draw line([{13.4,yy-2.35},{64.7,yy-2.35}]) color: rgb(184,195,207);
+                    draw line([{13.4,yy+2.35},{64.7,yy+2.35}]) color: rgb(190,202,215);
+                    draw rectangle(65.0, 1.0) at: {41.0,yy+3.25} color: rgb(131,150,171);
+                    draw line([{8.5,yy+3.75},{13.0,yy+3.25}]) color: rgb(161,176,193);
+                    draw (string(f+1) + "F") at: {3.0,yy+1.0} size: 7.2 color: rgb(32,58,87);
+                    draw ("n=" + string(present)) at: {75.5,yy+1.2} size: 5.9 color: rgb(49,82,113);
+                    // Density markers summarize real floor occupancy,
+                    // not recorded visitor coordinates.
+                    int dots <- min([30, int(float(present) / 5.0)]);
+                    if (dots > 0) {
+                        loop p from: 0 to: dots-1 {
+                            float px <- 15.8 + float(p mod 15) * 3.1;
+                            float py <- yy-1.2 + float(int(p/15)) * 2.3;
+                            draw circle(0.55) at: {px,py} color: rgb(33,122,204);
+                        }
+                    }
+                }
+                // Vertical transfer symbols; their geometry is illustrative.
+                loop b from: 0 to: 7 {
+                    float lower_y <- 20.2 + (8-b) * 7.35;
+                    float upper_y <- lower_y - 7.35;
+                    draw line([{65.0,lower_y+0.5},{71.1,upper_y-0.5}])
+                        color: rgb(49,123,196);
+                    draw circle(0.9) at: {71.1,upper_y-0.5}
+                        color: rgb(35,96,165);
+                    int ub <- 0;
+                    loop k from: 0 to: length(block_id)-1 {
+                        loop m from: 0 to: 2 {
+                            ub <- ub + truth_acc[((k*n_bnd+b)*2)*3+m];
+                        }
+                    }
+                    draw ("U" + string(b+1) + ": " + string(ub))
+                        at: {86.0,(lower_y+upper_y)/2.0+1.0} size: 5.7 color: rgb(27,78,126);
+                }
+                draw ("Day " + string(cur_day) + "  |  entered " + string(persons_entered)
+                    + "  |  exited " + string(persons_exited)) at: {8.0,94.0}
+                    size: 6.5 color: rgb(42,65,94);
+                draw "SCHEMATIC SPATIAL DISPLAY | 1 dot approx. 5 occupants | no XY tracking"
+                    at: {8.0,98.3} size: 5.8 color: rgb(104,115,129);
+            }
+        }
         monitor "Current tick" value: cycle;
         monitor "Groups in system" value: length(visitor);
         monitor "Persons entered today" value: persons_entered;
