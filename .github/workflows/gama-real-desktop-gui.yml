@@ -24,7 +24,7 @@ jobs:
       - name: Install virtual X display and screenshot tools
         run: |
           sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq xvfb xauth xdotool scrot libgtk-3-0 libxtst6 libxss1 libgl1 libgl1-mesa-dri mesa-utils libglu1-mesa
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq xvfb xauth xdotool scrot libgtk-3-0 libxtst6 libxss1 libgl1 libgl1-mesa-dri mesa-utils libglu1-mesa xserver-xorg-core xserver-xorg-video-dummy
 
       - name: Download official GAMA 2025.06.4 and verify SHA-256
         shell: bash
@@ -61,11 +61,45 @@ jobs:
           PY
           mkdir -p "$BASE/screenshots"
           echo "GUI will prompt for its own workspace, preserving native GAMA initialization."
-          Xvfb :99 -screen 0 1920x1080x24 +extension GLX +render -nolisten tcp > "$BASE/xvfb.log" 2>&1 &
+          cat > "$BASE/xorg-dummy.conf" <<'EOF'
+          Section "ServerLayout"
+            Identifier "Layout0"
+            Screen 0 "Screen0" 0 0
+          EndSection
+          Section "Device"
+            Identifier "Card0"
+            Driver "dummy"
+            VideoRam 256000
+          EndSection
+          Section "Monitor"
+            Identifier "Monitor0"
+            HorizSync 30-83
+            VertRefresh 50-75
+          EndSection
+          Section "Screen"
+            Identifier "Screen0"
+            Device "Card0"
+            Monitor "Monitor0"
+            DefaultDepth 24
+            SubSection "Display"
+              Depth 24
+              Modes "1920x1080"
+              Virtual 1920 1080
+            EndSubSection
+          EndSection
+          EOF
+          /usr/lib/xorg/Xorg :99 -noreset -config "$BASE/xorg-dummy.conf" -nolisten tcp -logfile "$BASE/xorg-server.log" > "$BASE/xvfb.log" 2>&1 &
+          X_SERVER_PID=$!
+          sleep 7
+          if ! kill -0 "$X_SERVER_PID" 2>/dev/null; then
+            echo "Xorg dummy server failed"
+            tail -100 "$BASE/xorg-server.log" || true
+            exit 10
+          fi
           export DISPLAY=:99 GTK_THEME=Adwaita GDK_BACKEND=x11
           export LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_LOADER_DRIVER_OVERRIDE=llvmpipe
           export JAVA_TOOL_OPTIONS="-Dsun.java2d.opengl=false"
-          glxinfo -B > "$BASE/glxinfo.log" 2>&1 || true
+          glxinfo -B > "$BASE/glxinfo.log" 2>&1 || { cat "$BASE/glxinfo.log"; exit 11; }
           sleep 4
           GUI="$(head -n1 "$BASE/launchers.txt")"
           chmod +x "$GUI"
@@ -117,6 +151,8 @@ jobs:
             /tmp/gama-desktop/glxinfo.log
             hs_err_pid*.log
             /tmp/gama-desktop/xvfb.log
+            /tmp/gama-desktop/xorg-server.log
+            /tmp/gama-desktop/xorg-dummy.conf
             /tmp/gama-desktop/windows.txt
             /tmp/gama-desktop/windows_before.txt
             /tmp/gama-desktop/window_ids.txt
