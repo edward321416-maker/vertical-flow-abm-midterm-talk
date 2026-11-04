@@ -776,7 +776,7 @@ experiment visual_capture type: gui {
                 draw rectangle(60.0, 69.0) at: {42.5,52.5} color: rgb(244,248,251);
                 // Repeated level bays, simple shopfronts and live density glyphs.
                 loop f from: 0 to: 8 {
-                    float yy <- 20.2 + (8 - f) * 7.35;
+                    float yy <- 23.0 + (8 - f) * 7.35;
                     int present <- sum(visitor where (each.cur_floor = f) collect each.persons);
                     draw rectangle(59.0, 6.1) at: {42.5, yy} color: rgb(232,237,245);
                     // Glass shop bays: illustrative architectural context.
@@ -791,7 +791,7 @@ experiment visual_capture type: gui {
                     draw ("n=" + string(present)) at: {75.5,yy+1.2} size: 5.9 color: rgb(49,82,113);
                     // Density markers summarize real floor occupancy,
                     // not recorded visitor coordinates.
-                    int dots <- min([30, int(float(present) / 5.0)]);
+                    int dots <- min([30, int(float(present) / 8.0)]);
                     if (dots > 0) {
                         loop p from: 0 to: dots-1 {
                             float px <- 15.8 + float(p mod 15) * 3.1;
@@ -802,7 +802,7 @@ experiment visual_capture type: gui {
                 }
                 // Vertical transfer symbols; their geometry is illustrative.
                 loop b from: 0 to: 7 {
-                    float lower_y <- 20.2 + (8-b) * 7.35;
+                    float lower_y <- 23.0 + (8-b) * 7.35;
                     float upper_y <- lower_y - 7.35;
                     draw line([{65.0,lower_y+0.5},{71.1,upper_y-0.5}])
                         color: rgb(49,123,196);
@@ -820,7 +820,7 @@ experiment visual_capture type: gui {
                 draw ("Day " + string(cur_day) + "  |  entered " + string(persons_entered)
                     + "  |  exited " + string(persons_exited)) at: {8.0,94.0}
                     size: 6.5 color: rgb(42,65,94);
-                draw "SCHEMATIC SPATIAL DISPLAY | 1 dot approx. 5 occupants | no XY tracking"
+                draw "SCHEMATIC | 1 dot approx. 8 people (max 30/floor) | no XY tracking"
                     at: {8.0,98.3} size: 5.8 color: rgb(104,115,129);
             }
         }
