@@ -24,7 +24,7 @@ jobs:
       - name: Install virtual X display and screenshot tools
         run: |
           sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq xvfb xauth xdotool scrot libgtk-3-0 libxtst6 libxss1 libgl1
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq xvfb xauth xdotool scrot libgtk-3-0 libxtst6 libxss1 libgl1 libgl1-mesa-dri mesa-utils libglu1-mesa
 
       - name: Download official GAMA 2025.06.4 and verify SHA-256
         shell: bash
@@ -61,8 +61,11 @@ jobs:
           PY
           mkdir -p "$BASE/screenshots"
           echo "GUI will prompt for its own workspace, preserving native GAMA initialization."
-          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp > "$BASE/xvfb.log" 2>&1 &
+          Xvfb :99 -screen 0 1920x1080x24 +extension GLX +render -nolisten tcp > "$BASE/xvfb.log" 2>&1 &
           export DISPLAY=:99 GTK_THEME=Adwaita GDK_BACKEND=x11
+          export LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_LOADER_DRIVER_OVERRIDE=llvmpipe
+          export JAVA_TOOL_OPTIONS="-Dsun.java2d.opengl=false"
+          glxinfo -B > "$BASE/glxinfo.log" 2>&1 || true
           sleep 4
           GUI="$(head -n1 "$BASE/launchers.txt")"
           chmod +x "$GUI"
@@ -75,12 +78,16 @@ jobs:
           scrot "$BASE/screenshots/workspace_dialog_initial.png"
           echo "VISIBLE WINDOWS BEFORE WORKSPACE ACCEPT:" > "$BASE/windows_before.txt"
           xdotool search --onlyvisible --name . getwindowname 2>/dev/null >> "$BASE/windows_before.txt" || true
-          # Allow the application to create its own required GAMA workspace markers.
-          xdotool key Return
-          sleep 9
+          # The native GAMA dialog is shown on this 1920x1080 display.
+          # Select an isolated, not-yet-existing workspace and click its OK button.
+          xdotool mousemove 856 478 click 1 key ctrl+a
+          xdotool type --clearmodifiers --delay 4 "$BASE/native_workspace"
+          xdotool mousemove 1197 588 click 1
+          sleep 8
           scrot "$BASE/screenshots/workspace_after_enter_1.png"
+          # If GAMA asks to create the directory, press the focused confirmation.
           xdotool key Return
-          sleep 13
+          sleep 15
           scrot "$BASE/screenshots/workspace_after_enter_2.png"
           echo "WINDOWS:" | tee "$BASE/windows.txt"
           xdotool search --onlyvisible --name . getwindowname 2>/dev/null | tee -a "$BASE/windows.txt" || true
@@ -107,6 +114,8 @@ jobs:
           path: |
             /tmp/gama-desktop/screenshots/*.png
             /tmp/gama-desktop/gui.log
+            /tmp/gama-desktop/glxinfo.log
+            hs_err_pid*.log
             /tmp/gama-desktop/xvfb.log
             /tmp/gama-desktop/windows.txt
             /tmp/gama-desktop/windows_before.txt
