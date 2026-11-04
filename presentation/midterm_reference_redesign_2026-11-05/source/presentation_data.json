@@ -1,0 +1,275 @@
+{
+  "generated_from_repo": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05",
+  "counts": {
+    "total_runs": 2600,
+    "missing_boundaries": 0,
+    "zero_u": 0,
+    "e1_runs": 1600,
+    "e2_runs": 1000
+  },
+  "rq1": {
+    "continuous": [
+      {
+        "boundary_order": 1,
+        "U_mean": 12346.405,
+        "AUFR_mean": null,
+        "AUFR_q025": null,
+        "AUFR_q975": null
+      },
+      {
+        "boundary_order": 2,
+        "U_mean": 7372.995,
+        "AUFR_mean": 0.597241392479184,
+        "AUFR_q025": 0.581606366790491,
+        "AUFR_q975": 0.610020235261391
+      },
+      {
+        "boundary_order": 3,
+        "U_mean": 4654.045,
+        "AUFR_mean": 0.631320863056602,
+        "AUFR_q025": 0.613813994413739,
+        "AUFR_q975": 0.651341629631074
+      },
+      {
+        "boundary_order": 4,
+        "U_mean": 3068.07,
+        "AUFR_mean": 0.65931678773585,
+        "AUFR_q025": 0.636365811882157,
+        "AUFR_q975": 0.684930567829229
+      },
+      {
+        "boundary_order": 5,
+        "U_mean": 2064.69,
+        "AUFR_mean": 0.672961951614895,
+        "AUFR_q025": 0.644382284135963,
+        "AUFR_q975": 0.701021712919546
+      },
+      {
+        "boundary_order": 6,
+        "U_mean": 1378.955,
+        "AUFR_mean": 0.66824583673481,
+        "AUFR_q025": 0.627950464237551,
+        "AUFR_q975": 0.703619218575159
+      },
+      {
+        "boundary_order": 7,
+        "U_mean": 866.925,
+        "AUFR_mean": 0.628646308945756,
+        "AUFR_q025": 0.587620793384191,
+        "AUFR_q975": 0.676903792702208
+      },
+      {
+        "boundary_order": 8,
+        "U_mean": 447.76,
+        "AUFR_mean": 0.516841613659622,
+        "AUFR_q025": 0.461887194622069,
+        "AUFR_q975": 0.581545454545455
+      }
+    ],
+    "fragmented": [
+      {
+        "boundary_order": 1,
+        "U_mean": 9802.105,
+        "AUFR_mean": null,
+        "AUFR_q025": null,
+        "AUFR_q975": null
+      },
+      {
+        "boundary_order": 2,
+        "U_mean": 5648.575,
+        "AUFR_mean": 0.576165019909679,
+        "AUFR_q025": 0.561206789827243,
+        "AUFR_q975": 0.591980692408878
+      },
+      {
+        "boundary_order": 3,
+        "U_mean": 3672.145,
+        "AUFR_mean": 0.650074259605593,
+        "AUFR_q025": 0.629623537494582,
+        "AUFR_q975": 0.671401433934592
+      },
+      {
+        "boundary_order": 4,
+        "U_mean": 2537.675,
+        "AUFR_mean": 0.691184948372064,
+        "AUFR_q025": 0.666911130088818,
+        "AUFR_q975": 0.713951296244851
+      },
+      {
+        "boundary_order": 5,
+        "U_mean": 1795.935,
+        "AUFR_mean": 0.707551305383802,
+        "AUFR_q025": 0.678676428966424,
+        "AUFR_q975": 0.735887423589386
+      },
+      {
+        "boundary_order": 6,
+        "U_mean": 1241.385,
+        "AUFR_mean": 0.691270418108191,
+        "AUFR_q025": 0.656431981482023,
+        "AUFR_q975": 0.726522003319276
+      },
+      {
+        "boundary_order": 7,
+        "U_mean": 795.99,
+        "AUFR_mean": 0.641334380548879,
+        "AUFR_q025": 0.598898518836536,
+        "AUFR_q975": 0.681921131069104
+      },
+      {
+        "boundary_order": 8,
+        "U_mean": 408.29,
+        "AUFR_mean": 0.513166763126057,
+        "AUFR_q025": 0.458419892413487,
+        "AUFR_q975": 0.56168544600939
+      }
+    ],
+    "u1": 12346.405,
+    "u8": 447.76,
+    "reach_percent": 3.6266427352739523,
+    "top_local_aufr_percent": 51.6841613659622,
+    "frag_u1": 9802.105,
+    "frag_first_gap_percent": -20.607618169013577
+  },
+  "rq2": {
+    "effects": [
+      {
+        "gamma": 2,
+        "percent": 5.997486642546002,
+        "lo": 5.755543410489006,
+        "hi": 6.23998338249101
+      },
+      {
+        "gamma": 4,
+        "percent": 10.938705512273007,
+        "lo": 10.400916372769009,
+        "hi": 11.479114350670994
+      },
+      {
+        "gamma": 8,
+        "percent": 18.371730403681006,
+        "lo": 16.806347491815,
+        "hi": 19.958091830100997
+      }
+    ],
+    "deviance_explained_gamma4_cont": {
+      "adjacent contrast (Delta)": 10.220553778650899,
+      "upper-floor program": 60.123073933744195,
+      "mean program above boundary": 39.7414074470003
+    }
+  },
+  "rq3": {
+    "erosion": [
+      {
+        "gamma": 2,
+        "estimate": 6.72308209787521,
+        "lo": 2.68894606318498,
+        "hi": 10.5124013954634
+      },
+      {
+        "gamma": 4,
+        "estimate": 0.77155977641899,
+        "lo": -4.11400544114913,
+        "hi": 5.22439558640864
+      },
+      {
+        "gamma": 8,
+        "estimate": 1.67037769666152,
+        "lo": -6.405817088765089,
+        "hi": 8.55536598727795
+      }
+    ]
+  },
+  "rq4": {
+    "patterns": [
+      {
+        "pattern": "TOP1",
+        "reach_percent": 58.749753933521,
+        "lo": 58.5449948148549,
+        "hi": 58.954513052187195,
+        "u8": 9112.36
+      },
+      {
+        "pattern": "STEP3",
+        "reach_percent": 14.0279887035909,
+        "lo": 13.939664865464099,
+        "hi": 14.116312541717798,
+        "u8": 2196.63
+      },
+      {
+        "pattern": "UNIFORM",
+        "reach_percent": 5.87550550738161,
+        "lo": 5.815299244696949,
+        "hi": 5.93571177006628,
+        "u8": 974.88
+      },
+      {
+        "pattern": "LOW3",
+        "reach_percent": 1.50399698665353,
+        "lo": 1.47668417884231,
+        "hi": 1.53130979446475,
+        "u8": 285.54
+      }
+    ],
+    "weights": {
+      "TOP1": [
+        0.05,
+        0.107143,
+        0.107143,
+        0.107143,
+        0.107143,
+        0.107143,
+        0.107143,
+        0.107143,
+        0.85
+      ],
+      "STEP3": [
+        0.05,
+        0.05,
+        0.45,
+        0.05,
+        0.05,
+        0.45,
+        0.05,
+        0.05,
+        0.45
+      ],
+      "UNIFORM": [
+        0.05,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "LOW3": [
+        0.05,
+        0.45,
+        0.45,
+        0.45,
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+      ]
+    }
+  },
+  "sources": {
+    "a1": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_a1_profile.csv",
+    "a2": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_a2_theta.csv",
+    "a2b": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_a2b_constructs.csv",
+    "a3": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_a3_moderation.csv",
+    "a4": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_a4_reach.csv",
+    "e2": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_e2_profile.csv",
+    "checks": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\outputs\\aik\\aik_checks.csv",
+    "plan": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\docs\\simulation\\aik_experiment_plan.md",
+    "odd": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\docs\\simulation\\ODD.md",
+    "model": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\simulation\\vertical_flow.gaml",
+    "analysis": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\R\\experiments\\aik_analysis.R",
+    "design": "D:\\Users\\admin\\Desktop\\2학기 논문\\output\\vertical_flow_ppt_work_2026-11-05\\analysis\\R\\experiments\\aik_program_circulation.R"
+  }
+}

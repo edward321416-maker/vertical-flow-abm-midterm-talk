@@ -1,0 +1,16 @@
+{
+  "name": "vertical-flow-final-presentation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reproducible 10-slide AUFR research presentation",
+  "scripts": {
+    "build": "node build_deck.js",
+    "concepts": "node build_concepts.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "4.0.1"
+  },
+  "overrides": {
+    "image-size": "2.0.4"
+  }
+}

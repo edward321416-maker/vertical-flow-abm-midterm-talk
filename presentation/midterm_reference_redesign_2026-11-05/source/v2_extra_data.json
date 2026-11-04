@@ -1,0 +1,35 @@
+{
+  "paper": {
+    "title_ko": "다층 상업시설의 프로그램 배치와 수직동선 마찰이 층간 상행유량에 미치는 영향",
+    "subtitle_ko": "에이전트 기반 시뮬레이션 민감도 분석",
+    "pdf_sha256": "73219d0365b5a84f9d871de939e85851659d06de6336deb116e60eb32a4fbe63",
+    "pages": 8
+  },
+  "rq1_shape": {
+    "cont": {"max_dev_log": 0.130908212883259, "F": 1301.61273823583, "p": 0, "stepped": true},
+    "frag": {"max_dev_log": 0.151510655886185, "F": 1976.79067732075, "p": 0, "stepped": true}
+  },
+  "rq3_log_slope_difference": [
+    {"gamma": 2, "difference": -0.0042},
+    {"gamma": 4, "difference": -0.0007},
+    {"gamma": 8, "difference": -0.0085}
+  ],
+  "rq3_u1_gap_percent": [
+    {"gamma": 0, "gap": -20.6},
+    {"gamma": 2, "gap": -18.5},
+    {"gamma": 4, "gap": -14.8},
+    {"gamma": 8, "gap": -9.2}
+  ],
+  "rq4_cont": [
+    {"pattern": "TOP1", "T": 0.58749753933521, "R": 0.554377179614336, "U8": 9112.36},
+    {"pattern": "STEP3", "T": 0.140279887035909, "R": 0.408646036516915, "U8": 2196.63},
+    {"pattern": "UNIFORM", "T": 0.0587550550738161, "R": 0.311350234930786, "U8": 974.88},
+    {"pattern": "LOW3", "T": 0.0150399698665353, "R": 0.284094758279213, "U8": 285.54}
+  ],
+  "rq4_primary_contrasts": [
+    {"contrast": "TOP1-STEP3", "outcome": "T", "difference": 0.447217652299301, "lo": 0.444994962534478, "hi": 0.449440342064125},
+    {"contrast": "TOP1-STEP3", "outcome": "R", "difference": 0.145731143097422, "lo": 0.144156313948114, "hi": 0.147305972246729},
+    {"contrast": "STEP3-UNIFORM", "outcome": "T", "difference": 0.0815248319620932, "lo": 0.0804616107595807, "hi": 0.0825880531646057},
+    {"contrast": "STEP3-UNIFORM", "outcome": "R", "difference": 0.0972958015861287, "lo": 0.0961650333879905, "hi": 0.0984265697842669}
+  ]
+}
