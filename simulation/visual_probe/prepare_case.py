@@ -75,6 +75,7 @@ ET.SubElement(plist, "Parameter", name="cell_file", var="cell_file",
 ET.SubElement(plist, "Parameter", name="rep_id", var="rep_id", type="INT", value="0")
 out = ET.SubElement(sim, "Outputs")
 ET.SubElement(out, "Output", id="1", name="Upward_Boundaries", framerate="240")
+ET.SubElement(out, "Output", id="2", name="Mall_Scene", framerate="240")
 ET.ElementTree(plan).write(base / "plan.xml", encoding="utf-8", xml_declaration=True)
 print("Prepared real GAMA run fixture:", base / "plan.xml")
 print("Settings: synthetic 9 floors, gamma=0, continuous, 1 day of 4h, seed 15125")
