@@ -59,21 +59,8 @@ jobs:
           out.write_text(source)
           print("Desktop experiment model:",out)
           PY
-          mkdir -p "$BASE/screenshots" "$BASE/workspace"
-          # GAMA's pre-bound -data workspace must have its own identity and
-          # a model-library version stamp; otherwise it refuses to start.
-          # This exact rule is in GAMA WorkspaceManager.checkWorkspaceDirectory.
-          touch "$BASE/workspace/.gama_application_workspace"
-          LIB_MODELS="$(find "$BASE/runtime" -type d -path '*/gama.library*/models' -print -quit)"
-          if [ -z "$LIB_MODELS" ]; then
-            echo "ERROR: GAMA library models directory not found"
-            find "$BASE/runtime" -maxdepth 8 -type d -iname '*library*' | head -20
-            exit 4
-          fi
-          echo "LIB_MODELS=$LIB_MODELS"
-          STAMP="$(python3 -c 'import os,sys; print(os.stat(sys.argv[1]).st_mtime_ns // 1000000)' "$LIB_MODELS")"
-          touch "$BASE/workspace/.built_in_models_${STAMP}"
-          ls -la "$BASE/workspace"
+          mkdir -p "$BASE/screenshots"
+          echo "GUI will prompt for its own workspace, preserving native GAMA initialization."
           Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp > "$BASE/xvfb.log" 2>&1 &
           export DISPLAY=:99 GTK_THEME=Adwaita GDK_BACKEND=x11
           sleep 4
@@ -81,10 +68,20 @@ jobs:
           chmod +x "$GUI"
           echo "START GUI: $GUI"
           echo "MODEL: $BASE/visual_gui.gaml#visual_capture"
-          "$GUI" -data "$BASE/workspace" "$BASE/visual_gui.gaml#visual_capture" > "$BASE/gui.log" 2>&1 &
+          "$GUI" "$BASE/visual_gui.gaml#visual_capture" > "$BASE/gui.log" 2>&1 &
           GUI_PID=$!
           echo "GAMA_PID=$GUI_PID"
-          sleep 35
+          sleep 20
+          scrot "$BASE/screenshots/workspace_dialog_initial.png"
+          echo "VISIBLE WINDOWS BEFORE WORKSPACE ACCEPT:" > "$BASE/windows_before.txt"
+          xdotool search --onlyvisible --name . getwindowname 2>/dev/null >> "$BASE/windows_before.txt" || true
+          # Allow the application to create its own required GAMA workspace markers.
+          xdotool key Return
+          sleep 9
+          scrot "$BASE/screenshots/workspace_after_enter_1.png"
+          xdotool key Return
+          sleep 13
+          scrot "$BASE/screenshots/workspace_after_enter_2.png"
           echo "WINDOWS:" | tee "$BASE/windows.txt"
           xdotool search --onlyvisible --name . getwindowname 2>/dev/null | tee -a "$BASE/windows.txt" || true
           echo "PROCESS:"
@@ -112,6 +109,7 @@ jobs:
             /tmp/gama-desktop/gui.log
             /tmp/gama-desktop/xvfb.log
             /tmp/gama-desktop/windows.txt
+            /tmp/gama-desktop/windows_before.txt
             /tmp/gama-desktop/window_ids.txt
             /tmp/gama-desktop/gui_status.txt
             /tmp/gama-desktop/launchers.txt
