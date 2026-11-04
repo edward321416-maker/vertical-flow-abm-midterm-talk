@@ -60,6 +60,20 @@ jobs:
           print("Desktop experiment model:",out)
           PY
           mkdir -p "$BASE/screenshots" "$BASE/workspace"
+          # GAMA's pre-bound -data workspace must have its own identity and
+          # a model-library version stamp; otherwise it refuses to start.
+          # This exact rule is in GAMA WorkspaceManager.checkWorkspaceDirectory.
+          touch "$BASE/workspace/.gama_application_workspace"
+          LIB_MODELS="$(find "$BASE/runtime" -type d -path '*/gama.library*/models' -print -quit)"
+          if [ -z "$LIB_MODELS" ]; then
+            echo "ERROR: GAMA library models directory not found"
+            find "$BASE/runtime" -maxdepth 8 -type d -iname '*library*' | head -20
+            exit 4
+          fi
+          echo "LIB_MODELS=$LIB_MODELS"
+          STAMP="$(python3 -c 'import os,sys; print(os.stat(sys.argv[1]).st_mtime_ns // 1000000)' "$LIB_MODELS")"
+          touch "$BASE/workspace/.built_in_models_${STAMP}"
+          ls -la "$BASE/workspace"
           Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp > "$BASE/xvfb.log" 2>&1 &
           export DISPLAY=:99 GTK_THEME=Adwaita GDK_BACKEND=x11
           sleep 4
