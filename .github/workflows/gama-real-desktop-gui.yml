@@ -145,7 +145,7 @@ jobs:
           src=Path(sys.argv[1]).read_text()
           needle='experiment visual_capture type: gui {'
           assert src.count(needle)==1
-          src=src.replace(needle,'experiment visual_capture type: gui autorun: true {\\n    float minimum_cycle_duration <- 0.05 #s;')
+          src=src.replace(needle,'experiment visual_capture type: gui autorun: true {\n    float minimum_cycle_duration <- 0.05 #s;')
           Path(sys.argv[2]).write_text(src)
           PY
           echo "PROJECT=$PROJECT_DIR/vertical_flow_capture.gaml"
