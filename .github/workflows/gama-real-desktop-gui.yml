@@ -161,6 +161,15 @@ jobs:
           scrot "$BASE/screenshots/workspace_after_enter_1.png"
           xdotool key Return
           sleep 38
+          # Genuine native GAMA Eclipse window (no fake dashboard).
+          # Increase its actual X11 window geometry before taking screenshots.
+          GAMA_WIN="$(xdotool search --onlyvisible --name 'visual_capture' | head -n1 || true)"
+          if [ -n "$GAMA_WIN" ]; then
+            xdotool windowmove "$GAMA_WIN" 16 16 || true
+            xdotool windowsize "$GAMA_WIN" 1860 1000 || true
+            xdotool getwindowgeometry --shell "$GAMA_WIN" > "$BASE/window_geometry.txt" || true
+            sleep 7
+          fi
           scrot "$BASE/screenshots/real_gama_experiment_initial.png"
           echo "WINDOWS:" | tee "$BASE/windows.txt"
           xdotool search --onlyvisible --name . getwindowname 2>/dev/null | tee -a "$BASE/windows.txt" || true
@@ -191,6 +200,7 @@ jobs:
             /tmp/gama-desktop/xorg-server.log
             /tmp/gama-desktop/xorg-dummy.conf
             /tmp/gama-desktop/windows.txt
+            /tmp/gama-desktop/window_geometry.txt
             /tmp/gama-desktop/windows_before.txt
             /tmp/gama-desktop/window_ids.txt
             /tmp/gama-desktop/gui_status.txt
