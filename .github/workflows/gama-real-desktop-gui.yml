@@ -59,6 +59,29 @@ jobs:
           out.write_text(source)
           print("Desktop experiment model:",out)
           PY
+          # GUI captures only the 2D Java2D displays. JOGL OpenGL is not
+          # required; that plugin segfaults inside glXQueryDrawable on the
+          # ephemeral CI virtual server. Disable it ONLY in this extracted
+          # disposable runtime, never in the user's installation or repo.
+          mkdir -p "$BASE/disabled_opengl_bundle"
+          for PLUGIN in "$BASE/runtime"/opt/gama-platform/plugins/gama.ui.display.opengl*; do
+            if [ -e "$PLUGIN" ]; then
+              mv "$PLUGIN" "$BASE/disabled_opengl_bundle/"
+              echo "Disabled optional OpenGL bundle: $PLUGIN"
+            fi
+          done
+          BUNDLES="$BASE/runtime/opt/gama-platform/configuration/org.eclipse.equinox.simpleconfigurator/bundles.info"
+          if [ -f "$BUNDLES" ]; then
+            python3 - "$BUNDLES" <<'PY'
+          from pathlib import Path
+          import sys
+          p=Path(sys.argv[1])
+          lines=p.read_text().splitlines()
+          skipped=[x for x in lines if x.startswith("gama.ui.display.opengl,")]
+          p.write_text("\n".join(x for x in lines if x not in skipped)+"\n")
+          print("Removed OpenGL-only OSGi entries:",skipped)
+          PY
+          fi
           mkdir -p "$BASE/screenshots"
           echo "GUI will prompt for its own workspace, preserving native GAMA initialization."
           cat > "$BASE/xorg-dummy.conf" <<'EOF'
@@ -105,7 +128,7 @@ jobs:
           chmod +x "$GUI"
           echo "START GUI: $GUI"
           echo "MODEL: $BASE/visual_gui.gaml#visual_capture"
-          "$GUI" "$BASE/visual_gui.gaml#visual_capture" > "$BASE/gui.log" 2>&1 &
+          "$GUI" -clean "$BASE/visual_gui.gaml#visual_capture" > "$BASE/gui.log" 2>&1 &
           GUI_PID=$!
           echo "GAMA_PID=$GUI_PID"
           sleep 20
