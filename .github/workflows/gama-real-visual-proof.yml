@@ -1,0 +1,83 @@
+name: Actual GAMA visual snapshot (isolated research proof)
+
+on:
+  push:
+    branches:
+      - research/real-gama-visual-proof-20261104
+
+permissions:
+  contents: read
+
+jobs:
+  real-gama-snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout isolated study branch
+        uses: actions/checkout@v4
+
+      - name: Use JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Download verified official GAMA 2025.06.4 runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/gama-visual-evidence/runtime
+          curl -fL --retry 3 --connect-timeout 30 --max-time 240 \
+            -o /tmp/gama-visual-evidence/gama.deb \
+            https://github.com/gama-platform/gama/releases/download/2025.06.4/GAMA_2025.06.4_Linux.deb
+          echo "c787f16a0044a135debe925cf39f1642163894bb1471d07a91e9e8a048e3b497  /tmp/gama-visual-evidence/gama.deb" | sha256sum -c -
+          dpkg-deb -x /tmp/gama-visual-evidence/gama.deb /tmp/gama-visual-evidence/runtime
+          find /tmp/gama-visual-evidence/runtime -name 'gama-headless.sh' -type f -print
+          java -version
+
+      - name: Prepare reproducible synthetic inputs and GAMA plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 simulation/visual_probe/prepare_case.py \
+            /tmp/gama-visual-evidence/case \
+            "$GITHUB_WORKSPACE/simulation/visual_probe/vertical_flow_capture.gaml"
+
+      - name: Compile actual GAML and run actual simulator with display snapshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=/tmp/gama-visual-evidence
+          GAMA_SH="$(find "$BASE/runtime" -name gama-headless.sh -type f -print -quit)"
+          test -n "$GAMA_SH"
+          cd "$(dirname "$GAMA_SH")"
+          mkdir -p "$BASE/workspace"
+          echo "GAMA_BINARY=$GAMA_SH"
+          timeout 240 bash "$GAMA_SH" -m 4g -ws "$BASE/workspace" \
+            -xml visual_capture \
+            "$GITHUB_WORKSPACE/simulation/visual_probe/vertical_flow_capture.gaml" \
+            "$BASE/case/template.xml" > "$BASE/compile.log" 2>&1 || { tail -n 80 "$BASE/compile.log"; exit 1; }
+          echo "GAML compile OK"
+          timeout 300 bash "$GAMA_SH" -m 4g -ws "$BASE/workspace" -hpc 1 \
+            "$BASE/case/plan.xml" "$BASE/case/gama_results" \
+            > "$BASE/run.log" 2>&1 || { tail -n 80 "$BASE/run.log"; exit 1; }
+          echo "Executed original agent movement logic in GAMA 2025.06.4"
+          find "$BASE/case" -name '*.png' -type f -print | tee "$BASE/snapshots_found.txt"
+          test -s "$BASE/snapshots_found.txt"
+          test -s "$BASE/case/model_output/rep_0/truth.csv"
+
+      - name: Preserve runtime logs and authentic screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-gama-2025-06-4-snapshots-and-evidence
+          path: |
+            /tmp/gama-visual-evidence/compile.log
+            /tmp/gama-visual-evidence/run.log
+            /tmp/gama-visual-evidence/snapshots_found.txt
+            /tmp/gama-visual-evidence/case/plan.xml
+            /tmp/gama-visual-evidence/case/model_output/rep_0/*.csv
+            /tmp/gama-visual-evidence/case/gama_results/**/*.png
+            /tmp/gama-visual-evidence/case/gama_results/**/*.xml
+          if-no-files-found: warn
+          retention-days: 7
