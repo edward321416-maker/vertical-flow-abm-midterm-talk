@@ -733,14 +733,14 @@ experiment visual_capture type: gui {
                     float yy <- 28.0 + (8 - f) * 8.0;
                     int present <- sum(visitor where (each.cur_floor = f) collect each.persons);
                     float ww <- min([44.0, float(present) * 0.16]);
-                    draw rectangle(68.0, 6.5) at: {42.0, yy} color: rgb(229,233,240);
+                    draw rectangle(60.0, 6.5) at: {39.0, yy} color: rgb(229,233,240);
                     if (ww > 0.0) {
-                        draw rectangle(ww, 3.5) at: {17.0 + ww / 2.0, yy} color: rgb(39,117,192);
+                        draw rectangle(ww, 3.5) at: {12.0 + ww / 2.0, yy} color: rgb(39,117,192);
                     }
                     draw (string(f + 1) + "F") at: {3.5, yy + 0.9} size: 7 color: rgb(44,52,69);
-                    draw ("on floor: " + string(present)) at: {74.0, yy + 0.9} size: 6 color: rgb(80,96,114);
+                    draw ("n=" + string(present)) at: {58.0, yy + 0.9} size: 6 color: rgb(80,96,114);
                 }
-                draw "UPWARD CROSSINGS (since day start)" at: {65.0, 24.0} size: 6 color: rgb(29,44,63);
+                draw "UPWARD CROSSINGS" at: {72.0, 24.0} size: 6 color: rgb(29,44,63);
                 loop b from: 0 to: 7 {
                     int ub <- 0;
                     loop k from: 0 to: length(block_id) - 1 {
@@ -749,7 +749,7 @@ experiment visual_capture type: gui {
                         }
                     }
                     float yyb <- 32.0 + (7-b) * 8.0;
-                    draw ("U" + string(b+1) + " = " + string(ub)) at: {74.0, yyb} size: 6 color: rgb(25,62,98);
+                    draw ("U" + string(b+1) + ": " + string(ub)) at: {74.0, yyb} size: 6 color: rgb(25,62,98);
                 }
                 draw "DISPLAY: schematic aggregation; agents have no physical XY positions"
                     at: {9.0, 97.0} size: 7 color: rgb(100,100,105);
