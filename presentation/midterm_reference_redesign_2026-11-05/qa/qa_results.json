@@ -1,0 +1,707 @@
+{
+ "status": "PASS",
+ "pdf": "presentation/midterm_reference_redesign_2026-11-05/vertical_flow_midterm_reference_refined.pdf",
+ "pdf_sha256": "47404dedce5212be630e2c44ec1fb2c3905ba7c4875f764e552e0e0af6c50839",
+ "pages": 18,
+ "page_size_pt": [
+  960.0,
+  540.0
+ ],
+ "titles": {
+  "1": "다층 상업시설의 프로그램 구성과 수직동선 저항에 따른 층간 상행유량비(AUFR)",
+  "2": "발표 구성",
+  "3": "절대 유량만으로는 구간별 감소를 비교하기 어렵다",
+  "4": "세 지표는 서로 다른 질문에 답한다",
+  "5": "관측된 다층 복합공간과 가상 층 선택 모형",
+  "6": "핵심 질문을 네 가지로 나누어 분석했다",
+  "7": "가상 방문 그룹의 층 선택과 경계 기록",
+  "8": "상행유량비(AUFR)는 바로 아래 경계와 비교한다",
+  "9": "이동 저항과 앵커 배치를 나누어 비교했다",
+  "10": "추가 유인이 없어도 위층일수록 통과량이 줄었다",
+  "11": "감소 비율은 경계마다 달랐다",
+  "12": "인접층 앵커 차이가 클수록 상행유량비가 높았다",
+  "13": "절대 유량은 바로 위층 비중과 더 밀접했다",
+  "14": "이동 저항이 커져도 관계가 늘 약해지지는 않았다",
+  "15": "같은 앵커 총량을 네 가지로 배치했다",
+  "16": "네 배치 중 최상층 집중형의 상단 유량이 가장 컸다",
+  "17": "네 가지 한계마다 검증 과제가 남아 있다",
+  "18": "현재까지의 결과와 다음 검증"
+ },
+ "fonts": {
+  "/AAAAAA+Pretendard-SemiBold": {
+   "subtype": "/Type0",
+   "embedded": true,
+   "internal_names": [
+    "Pretendard SemiBold"
+   ]
+  },
+  "/BAAAAA+Pretendard-Bold": {
+   "subtype": "/Type0",
+   "embedded": true,
+   "internal_names": [
+    "Pretendard",
+    "Pretendard Bold"
+   ]
+  },
+  "/CAAAAA+Pretendard-Regular": {
+   "subtype": "/Type0",
+   "embedded": true,
+   "internal_names": [
+    "Pretendard",
+    "Pretendard Regular"
+   ]
+  },
+  "/DAAAAA+Pretendard-Medium": {
+   "subtype": "/Type0",
+   "embedded": true,
+   "internal_names": [
+    "Pretendard Medium"
+   ]
+  }
+ },
+ "pdffonts": "name                                 type              encoding         emb sub uni object ID\n------------------------------------ ----------------- ---------------- --- --- --- ---------\nAAAAAA+Pretendard-SemiBold           CID TrueType      Identity-H       yes yes yes      4  0\nBAAAAA+Pretendard-Bold               CID TrueType      Identity-H       yes yes yes      5  0\nCAAAAA+Pretendard-Regular            CID TrueType      Identity-H       yes yes yes      6  0\nDAAAAA+Pretendard-Medium             CID TrueType      Identity-H       yes yes yes     11  0\n",
+ "backgrounds": [
+  {
+   "page": 1,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.936
+  },
+  {
+   "page": 2,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.814
+  },
+  {
+   "page": 3,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.779
+  },
+  {
+   "page": 4,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.806
+  },
+  {
+   "page": 5,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.725
+  },
+  {
+   "page": 6,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.814
+  },
+  {
+   "page": 7,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.774
+  },
+  {
+   "page": 8,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.805
+  },
+  {
+   "page": 9,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.742
+  },
+  {
+   "page": 10,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.842
+  },
+  {
+   "page": 11,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.779
+  },
+  {
+   "page": 12,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.84
+  },
+  {
+   "page": 13,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.84
+  },
+  {
+   "page": 14,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.815
+  },
+  {
+   "page": 15,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.712
+  },
+  {
+   "page": 16,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.75
+  },
+  {
+   "page": 17,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.76
+  },
+  {
+   "page": 18,
+   "size": [
+    2000,
+    1125
+   ],
+   "corners_white": true,
+   "dominant_colour": "#FFFFFF",
+   "dominant_share": 0.754
+  }
+ ],
+ "checks": [
+  {
+   "check": "exactly_18_pages",
+   "status": "PASS",
+   "evidence": {
+    "pages": 18
+   }
+  },
+  {
+   "check": "all_pages_16x9",
+   "status": "PASS",
+   "evidence": {
+    "sizes_pt": [
+     [
+      960.0,
+      540.0
+     ]
+    ],
+    "ratio": 1.777778
+   }
+  },
+  {
+   "check": "pdf_tagged",
+   "status": "PASS",
+   "evidence": {
+    "StructTreeRoot": true
+   }
+  },
+  {
+   "check": "searchable_text_every_page",
+   "status": "PASS",
+   "evidence": {
+    "chars_per_page": [
+     111,
+     339,
+     616,
+     629,
+     834,
+     466,
+     771,
+     508,
+     814,
+     511,
+     552,
+     677,
+     610,
+     672,
+     671,
+     732,
+     701,
+     735
+    ]
+   }
+  },
+  {
+   "check": "pdftotext_extracts_korean",
+   "status": "PASS",
+   "evidence": {
+    "sample_found": true
+   }
+  },
+  {
+   "check": "p2_no_RQ1_RQ2",
+   "status": "PASS",
+   "evidence": {
+    "count": 0
+   }
+  },
+  {
+   "check": "p2_no_RQ3_RQ4",
+   "status": "PASS",
+   "evidence": {
+    "count": 0
+   }
+  },
+  {
+   "check": "p2_no_E1_E2_or_RQ_codes",
+   "status": "PASS",
+   "evidence": {
+    "found": []
+   }
+  },
+  {
+   "check": "p2_six_topics_exact",
+   "status": "PASS",
+   "evidence": {
+    "missing": []
+   }
+  },
+  {
+   "check": "p2_item04_exact",
+   "status": "PASS",
+   "evidence": {
+    "found": true
+   }
+  },
+  {
+   "check": "p2_item05_exact",
+   "status": "PASS",
+   "evidence": {
+    "found": true
+   }
+  },
+  {
+   "check": "p2_items_single_line",
+   "status": "PASS",
+   "evidence": {
+    "line_width_pt": {
+     "연구 배경과 핵심 질문": 144.3,
+     "선행연구와 분석 방법": 140.2,
+     "시뮬레이션 조건과 실험 설계": 188.3,
+     "층간 상행유량 감소와 프로그램 구성": 236.4,
+     "이동 저항과 앵커 배치에 따른 차이": 225.8,
+     "현재까지의 분석 결과와 향후 검증": 221.7
+    }
+   }
+  },
+  {
+   "check": "cover_states_midterm",
+   "status": "PASS",
+   "evidence": {
+    "cover_text": "논문 중간발표 다층 상업시설의 프로그램 구성과 수직동선 저항에 따른 층간 상행유량비(AUFR) 인접층 관계와 수직 배치의 에이전트 기반 민감도 분석 봉성현 성균관대학교 건축학과 2026. 11. 5."
+   }
+  },
+  {
+   "check": "no_conference_or_defense_framing",
+   "status": "PASS",
+   "evidence": {
+    "found": []
+   }
+  },
+  {
+   "check": "no_종합_결론",
+   "status": "PASS",
+   "evidence": {
+    "found": false
+   }
+  },
+  {
+   "check": "cover_typography_only",
+   "status": "PASS",
+   "evidence": {
+    "non_background_drawings": 0,
+    "images": 0,
+    "note": "full-page white fills (html/body/slide background paint) are excluded"
+   }
+  },
+  {
+   "check": "no_internal_code_main_titles",
+   "status": "PASS",
+   "evidence": {
+    "titles": [
+     "다층 상업시설의 프로그램 구성과 수직동선 저항에 따른 층간 상행유량비(AUFR)",
+     "발표 구성",
+     "절대 유량만으로는 구간별 감소를 비교하기 어렵다",
+     "세 지표는 서로 다른 질문에 답한다",
+     "관측된 다층 복합공간과 가상 층 선택 모형",
+     "핵심 질문을 네 가지로 나누어 분석했다",
+     "가상 방문 그룹의 층 선택과 경계 기록",
+     "상행유량비(AUFR)는 바로 아래 경계와 비교한다",
+     "이동 저항과 앵커 배치를 나누어 비교했다",
+     "추가 유인이 없어도 위층일수록 통과량이 줄었다",
+     "감소 비율은 경계마다 달랐다",
+     "인접층 앵커 차이가 클수록 상행유량비가 높았다",
+     "절대 유량은 바로 위층 비중과 더 밀접했다",
+     "이동 저항이 커져도 관계가 늘 약해지지는 않았다",
+     "같은 앵커 총량을 네 가지로 배치했다",
+     "네 배치 중 최상층 집중형의 상단 유량이 가장 컸다",
+     "네 가지 한계마다 검증 과제가 남아 있다",
+     "현재까지의 결과와 다음 검증"
+    ]
+   }
+  },
+  {
+   "check": "titles_about_25_chars",
+   "status": "PASS",
+   "evidence": {
+    "titles_over_25_nonspace_chars": {}
+   }
+  },
+  {
+   "check": "all_titles_single_line_audit",
+   "status": "PASS",
+   "evidence": {
+    "pages": 18
+   }
+  },
+  {
+   "check": "rq_e_codes_only_small_labels",
+   "status": "PASS",
+   "evidence": {
+    "occurrences": {
+     "RQ1": 4,
+     "RQ2": 3,
+     "RQ3": 2,
+     "RQ4": 3,
+     "RQ1–RQ4": 1,
+     "E1": 9,
+     "E2": 4
+    },
+    "note": "only in 9 pt footer/margin labels (see QA_REPORT)"
+   }
+  },
+  {
+   "check": "full_nine_floor_abstraction_at_most_once",
+   "status": "PASS",
+   "evidence": {
+    "pages_with_nine_drawn_floor_lines": [
+     7
+    ],
+    "pages_with_nine_standalone_floor_labels": [
+     7,
+     15
+    ],
+    "note": "a page counts as a floor abstraction only if each label 1F–9F sits on a drawn floor line; p15 is the required floor x scenario table"
+   }
+  },
+  {
+   "check": "aufr_formula_p4",
+   "status": "PASS",
+   "evidence": {
+    "found": true
+   }
+  },
+  {
+   "check": "t_formula_p4",
+   "status": "PASS",
+   "evidence": {
+    "found": true
+   }
+  },
+  {
+   "check": "aufr4_worked_example_p8",
+   "status": "PASS",
+   "evidence": {
+    "found": true
+   }
+  },
+  {
+   "check": "no_fake_unicode_subscripts",
+   "status": "PASS",
+   "evidence": {
+    "found": []
+   }
+  },
+  {
+   "check": "minus_sign_in_b_minus_1",
+   "status": "PASS",
+   "evidence": {
+    "U+2212": true
+   }
+  },
+  {
+   "check": "no_tilde_ranges",
+   "status": "PASS",
+   "evidence": {
+    "tilde_count": 0
+   }
+  },
+  {
+   "check": "displayed_values_present_on_pages",
+   "status": "PASS",
+   "evidence": {
+    "missing": {}
+   }
+  },
+  {
+   "check": "locked_values_match_verified_json",
+   "status": "PASS",
+   "evidence": {
+    "U1": true,
+    "U8": true,
+    "U8/U1": true,
+    "last_AUFR": true,
+    "frag_gap": true,
+    "mult": true,
+    "dev": true,
+    "erosion": true,
+    "T": true,
+    "TOP1_U8": true,
+    "budgets": true,
+    "runs": true
+   }
+  },
+  {
+   "check": "value_checks_csv_all_pass",
+   "status": "PASS",
+   "evidence": {
+    "rows": 201
+   }
+  },
+  {
+   "check": "percentage_point_only_negated",
+   "status": "PASS",
+   "evidence": {
+    "occurrences": 1
+   }
+  },
+  {
+   "check": "no_effect_claim_only_negated",
+   "status": "PASS",
+   "evidence": {
+    "contexts": [
+     "는 것은 ‘효과가 없다’는 증명이 아니라, "
+    ]
+   }
+  },
+  {
+   "check": "optimum_only_negated",
+   "status": "PASS",
+   "evidence": {
+    "contexts": [
+     "최적 배치가 아니다. 출처: analysis/outpu",
+     "최적 배치를 뜻하지 않는다. 출처: 10–16쪽의 분석"
+    ]
+   }
+  },
+  {
+   "check": "all_fonts_embedded",
+   "status": "PASS",
+   "evidence": {
+    "/AAAAAA+Pretendard-SemiBold": {
+     "subtype": "/Type0",
+     "embedded": true,
+     "internal_names": [
+      "Pretendard SemiBold"
+     ]
+    },
+    "/BAAAAA+Pretendard-Bold": {
+     "subtype": "/Type0",
+     "embedded": true,
+     "internal_names": [
+      "Pretendard",
+      "Pretendard Bold"
+     ]
+    },
+    "/CAAAAA+Pretendard-Regular": {
+     "subtype": "/Type0",
+     "embedded": true,
+     "internal_names": [
+      "Pretendard",
+      "Pretendard Regular"
+     ]
+    },
+    "/DAAAAA+Pretendard-Medium": {
+     "subtype": "/Type0",
+     "embedded": true,
+     "internal_names": [
+      "Pretendard Medium"
+     ]
+    }
+   }
+  },
+  {
+   "check": "single_typeface_pretendard",
+   "status": "PASS",
+   "evidence": {
+    "fonts": [
+     "/AAAAAA+Pretendard-SemiBold",
+     "/BAAAAA+Pretendard-Bold",
+     "/CAAAAA+Pretendard-Regular",
+     "/DAAAAA+Pretendard-Medium"
+    ]
+   }
+  },
+  {
+   "check": "no_fallback_fonts",
+   "status": "PASS",
+   "evidence": {
+    "fonts": [
+     "/AAAAAA+Pretendard-SemiBold",
+     "/BAAAAA+Pretendard-Bold",
+     "/CAAAAA+Pretendard-Regular",
+     "/DAAAAA+Pretendard-Medium"
+    ]
+   }
+  },
+  {
+   "check": "primarily_black_text",
+   "status": "PASS",
+   "evidence": {
+    "character_share": {
+     "black(≤#3d3d3d)": 0.657,
+     "grey": 0.325,
+     "data colour": 0.018
+    }
+   }
+  },
+  {
+   "check": "no_colour_on_cover_or_toc",
+   "status": "PASS",
+   "evidence": {
+    "coloured_spans": []
+   }
+  },
+  {
+   "check": "final_renders_18_at_150dpi",
+   "status": "PASS",
+   "evidence": {
+    "count": 18,
+    "size_px": [
+     2000,
+     1125
+    ]
+   }
+  },
+  {
+   "check": "white_backgrounds",
+   "status": "PASS",
+   "evidence": {
+    "min_white_share": 0.712
+   }
+  },
+  {
+   "check": "layout_audit_no_overflow_overlap",
+   "status": "PASS",
+   "evidence": {
+    "issues": 0,
+    "fonts_loaded": [
+     [
+      "400",
+      true
+     ],
+     [
+      "500",
+      true
+     ],
+     [
+      "600",
+      true
+     ],
+     [
+      "700",
+      true
+     ]
+    ]
+   }
+  },
+  {
+   "check": "inputs_unchanged_sha256",
+   "status": "PASS",
+   "evidence": {
+    "changed": [],
+    "extra": []
+   }
+  },
+  {
+   "check": "tracked_sources_and_outputs_unmodified_in_git",
+   "status": "PASS",
+   "evidence": {
+    "git_status": "clean"
+   }
+  },
+  {
+   "check": "contact_sheets_written",
+   "status": "PASS",
+   "evidence": {
+    "final": "qa/contact_sheet_final.png",
+    "source": "qa/contact_sheet_source.png"
+   }
+  }
+ ]
+}

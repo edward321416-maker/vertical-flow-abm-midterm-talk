@@ -631,7 +631,7 @@ ${box(56, 444, 600, '2026. 11. 5.', 'cover-meta')}
     title: '인접층 앵커 차이가 클수록 상행유량비가 높았다',
     subtitle: '연속형 · Δ<i>x</i> = 바로 위층 ' + MINUS + ' 바로 아래층 앵커 비중 · Δ<i>x</i>가 0.1 커질 때 AUFR의 상대 배수와 95% 신뢰구간(반복 군집-강건)',
     body: chart + r,
-    source: '출처: analysis/outputs/aik/aik_a2_theta.csv · log AUFR ~ 경계 고정효과 + 10Δ<i>x</i>, 반복 단위 군집 표준오차(HC1), <i>t</i>(199)',
+    source: '출처: analysis/outputs/aik/aik_a2_theta.csv · 경계 고정효과와 10Δ<i>x</i>를 넣은 log AUFR 회귀, 반복 단위 군집 표준오차(HC1), <i>t</i>(199)',
     trace: 'RQ2 · E1',
   }));
 }
@@ -742,7 +742,7 @@ ${box(56, 444, 600, '2026. 11. 5.', 'cover-meta')}
   pages.push(slide({
     no: 14, section: 5,
     title: '이동 저항이 커져도 관계가 늘 약해지지는 않았다',
-    subtitle: '잠식률 = 1 ' + MINUS + ' (분절형 기울기 ÷ 연속형 기울기) · 원척도 AUFR ~ Δ<i>x</i> 기울기 · 95% 신뢰구간(반복 군집 부트스트랩 2,000회)',
+    subtitle: '잠식률 = 1 ' + MINUS + ' (분절형 기울기 ÷ 연속형 기울기) · Δ<i>x</i>에 대한 원척도 AUFR 기울기 · 95% 신뢰구간(반복 군집 부트스트랩 2,000회)',
     body: chart + side + note,
     source: '출처: analysis/outputs/aik/aik_a3_moderation.csv (erosion, erosion_lo, erosion_hi) · aik_boundary_rep.csv (첫 경계 U 평균)',
     trace: 'RQ3 · E1',
