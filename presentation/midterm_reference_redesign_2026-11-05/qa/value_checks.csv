@@ -1,0 +1,202 @@
+﻿check_id,pages,description,displayed_value,csv_value,independent_recomputation,tolerance,source,status
+runs_e1,9,E1 runs (8 cells x 200),"1,600",1600,1600,0,aik_checks.csv n_rep; aik_boundary_rep.csv,PASS
+runs_e2,9,E2 runs (8 cells x 100 + 2 gamma=0 controls x 100),"1,000",1000,1000,0,aik_checks.csv; aik_boundary_rep.csv,PASS
+runs_total,9,Total runs,"2,600",2600,2600,0,sum,PASS
+rows_total,9,Boundary rows = runs x 8,"20,800",20800,20800,0,aik_boundary_rep.csv,PASS
+missing_boundaries,9,Missing repetition-boundaries,0,0,0,0,aik_checks.csv,PASS
+zero_U,9,Boundaries with U = 0,0,0,0,0,aik_checks.csv; boundary_rep,PASS
+n_days,10,Simulated days per repetition,4,4,4,0,aik_cells.csv n_days,PASS
+a1_U_cont_b1,10,gamma=0 cont mean U boundary 1,,12346.4,12346.4,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_U_cont_b2,10,gamma=0 cont mean U boundary 2,,7372.99,7372.99,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b2,11,gamma=0 cont mean AUFR boundary 2,,0.597241,0.597241,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b2,11,gamma=0 cont AUFR 2.5-97.5% band boundary 2,,1.19163,1.19163,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_cont_b3,10,gamma=0 cont mean U boundary 3,,4654.05,4654.05,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b3,11,gamma=0 cont mean AUFR boundary 3,,0.631321,0.631321,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b3,11,gamma=0 cont AUFR 2.5-97.5% band boundary 3,,1.26516,1.26516,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_cont_b4,10,gamma=0 cont mean U boundary 4,,3068.07,3068.07,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b4,11,gamma=0 cont mean AUFR boundary 4,,0.659317,0.659317,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b4,11,gamma=0 cont AUFR 2.5-97.5% band boundary 4,,1.3213,1.3213,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_cont_b5,10,gamma=0 cont mean U boundary 5,,2064.69,2064.69,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b5,11,gamma=0 cont mean AUFR boundary 5,,0.672962,0.672962,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b5,11,gamma=0 cont AUFR 2.5-97.5% band boundary 5,,1.3454,1.3454,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_cont_b6,10,gamma=0 cont mean U boundary 6,,1378.95,1378.95,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b6,11,gamma=0 cont mean AUFR boundary 6,,0.668246,0.668246,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b6,11,gamma=0 cont AUFR 2.5-97.5% band boundary 6,,1.33157,1.33157,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_cont_b7,10,gamma=0 cont mean U boundary 7,,866.925,866.925,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b7,11,gamma=0 cont mean AUFR boundary 7,,0.628646,0.628646,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b7,11,gamma=0 cont AUFR 2.5-97.5% band boundary 7,,1.26452,1.26452,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_cont_b8,10,gamma=0 cont mean U boundary 8,,447.76,447.76,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_cont_b8,11,gamma=0 cont mean AUFR boundary 8,,0.516842,0.516842,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_cont_b8,11,gamma=0 cont AUFR 2.5-97.5% band boundary 8,,1.04343,1.04343,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b1,10,gamma=0 frag mean U boundary 1,,9802.1,9802.1,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_U_frag_b2,10,gamma=0 frag mean U boundary 2,,5648.57,5648.57,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b2,11,gamma=0 frag mean AUFR boundary 2,,0.576165,0.576165,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b2,11,gamma=0 frag AUFR 2.5-97.5% band boundary 2,,1.15319,1.15319,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b3,10,gamma=0 frag mean U boundary 3,,3672.14,3672.14,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b3,11,gamma=0 frag mean AUFR boundary 3,,0.650074,0.650074,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b3,11,gamma=0 frag AUFR 2.5-97.5% band boundary 3,,1.30102,1.30102,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b4,10,gamma=0 frag mean U boundary 4,,2537.68,2537.68,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b4,11,gamma=0 frag mean AUFR boundary 4,,0.691185,0.691185,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b4,11,gamma=0 frag AUFR 2.5-97.5% band boundary 4,,1.38086,1.38086,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b5,10,gamma=0 frag mean U boundary 5,,1795.93,1795.93,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b5,11,gamma=0 frag mean AUFR boundary 5,,0.707551,0.707551,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b5,11,gamma=0 frag AUFR 2.5-97.5% band boundary 5,,1.41456,1.41456,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b6,10,gamma=0 frag mean U boundary 6,,1241.38,1241.38,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b6,11,gamma=0 frag mean AUFR boundary 6,,0.69127,0.69127,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b6,11,gamma=0 frag AUFR 2.5-97.5% band boundary 6,,1.38295,1.38295,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b7,10,gamma=0 frag mean U boundary 7,,795.99,795.99,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b7,11,gamma=0 frag mean AUFR boundary 7,,0.641334,0.641334,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b7,11,gamma=0 frag AUFR 2.5-97.5% band boundary 7,,1.28082,1.28082,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+a1_U_frag_b8,10,gamma=0 frag mean U boundary 8,,408.29,408.29,1e-06,aik_a1_profile.csv U_mean,PASS
+a1_AUFR_frag_b8,11,gamma=0 frag mean AUFR boundary 8,,0.513167,0.513167,1e-09,aik_a1_profile.csv AUFR_mean,PASS
+a1_AUFRq_frag_b8,11,gamma=0 frag AUFR 2.5-97.5% band boundary 8,,1.02011,1.02011,1e-09,aik_a1_profile.csv quantiles (R type 7 = numpy linear),PASS
+u1_cont,"10,18",Continuous U1 (gamma=0),"12,346",12346.4,12346.4,1e-06,aik_a1_profile.csv,PASS
+u1_cont_display,10,Continuous U1 (display rounding),"12,346","12,346",,0,,PASS
+u8_cont,"10,18",Continuous U8 (gamma=0),448,447.76,447.76,1e-06,aik_a1_profile.csv,PASS
+u8_cont_display,10,Continuous U8 (display rounding),448,448,,0,,PASS
+u8u1_cont,"10,11,18",U8/U1 continuous: mean of per-repetition ratios (RUI_8),3.6%,0.0363039,0.0363039,1e-12,aik_a1_profile.csv RUI_mean b=8,PASS
+u8u1_cont_display,10,U8/U1 per-repetition mean (display rounding),3.6%,3.6,,0,,PASS
+u8u1_ratio_of_means_display,10,U8/U1 ratio of means (same rounding) (display rounding),3.6%,3.6,,0,,PASS
+last_local_aufr,"11,18","Last local AUFR U8/U7, continuous gamma=0",51.7%,0.516842,0.516842,1e-12,aik_a1_profile.csv AUFR_mean b=8,PASS
+last_local_aufr_display,11,Last local AUFR (display rounding),51.7%,51.7,,0,,PASS
+frag_gap,10,Segmented first-boundary U vs continuous,−20.6%,-0.206076,-0.206076,1e-12,aik_a1_profile.csv U_mean b=1,PASS
+frag_gap_display,10,Segmented first-boundary gap (display rounding),-20.6%,-20.6,,0,,PASS
+geo_ratio,11,Constant-ratio reference (U8/U1)^(1/7),≈ 62%,,0.622608,0,derived from aik_a1_profile.csv,PASS
+aufr4_cont,8,"Worked example AUFR4 = mean per-rep U4/U3, continuous gamma=0",0.659,0.659317,0.659317,1e-12,aik_a1_profile.csv AUFR_mean b=4,PASS
+aufr4_cont_display,8,AUFR4 worked example (display rounding),0.659,0.659,,0,,PASS
+a1_shape_F_cont,11,Log-linear vs boundary-factor F (cont),"1,302",1301.61,1301.61,0.001,aik_a1_shape.csv F,PASS
+a1_shape_F_frag,11,Log-linear vs boundary-factor F (frag),"1,977",1976.79,1976.79,0.001,aik_a1_shape.csv F,PASS
+a2_rr_cont_g0,12,"AUFR multiplier per +0.1 contrast, cont gamma=0",,0.999324,0.999324,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_cont_g0,12,"multiplier 95% CI low, cont gamma=0",,0.998478,0.998478,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_cont_g0,12,"multiplier 95% CI high, cont gamma=0",,1.00017,1.00017,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_cont_g2,12,"AUFR multiplier per +0.1 contrast, cont gamma=2",,1.05997,1.05997,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_cont_g2,12,"multiplier 95% CI low, cont gamma=2",,1.05756,1.05756,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_cont_g2,12,"multiplier 95% CI high, cont gamma=2",,1.0624,1.0624,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_cont_g4,12,"AUFR multiplier per +0.1 contrast, cont gamma=4",,1.10939,1.10939,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_cont_g4,12,"multiplier 95% CI low, cont gamma=4",,1.10401,1.10401,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_cont_g4,12,"multiplier 95% CI high, cont gamma=4",,1.11479,1.11479,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_cont_g8,12,"AUFR multiplier per +0.1 contrast, cont gamma=8",,1.18372,1.18372,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_cont_g8,12,"multiplier 95% CI low, cont gamma=8",,1.16806,1.16806,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_cont_g8,12,"multiplier 95% CI high, cont gamma=8",,1.19958,1.19958,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_frag_g0,12,"AUFR multiplier per +0.1 contrast, frag gamma=0",,0.999258,0.999258,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_frag_g0,12,"multiplier 95% CI low, frag gamma=0",,0.998452,0.998452,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_frag_g0,12,"multiplier 95% CI high, frag gamma=0",,1.00006,1.00006,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_frag_g2,12,"AUFR multiplier per +0.1 contrast, frag gamma=2",,1.05552,1.05552,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_frag_g2,12,"multiplier 95% CI low, frag gamma=2",,1.05362,1.05362,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_frag_g2,12,"multiplier 95% CI high, frag gamma=2",,1.05742,1.05742,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_frag_g4,12,"AUFR multiplier per +0.1 contrast, frag gamma=4",,1.10863,1.10863,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_frag_g4,12,"multiplier 95% CI low, frag gamma=4",,1.10359,1.10359,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_frag_g4,12,"multiplier 95% CI high, frag gamma=4",,1.11369,1.11369,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_rr_frag_g8,12,"AUFR multiplier per +0.1 contrast, frag gamma=8",,1.17365,1.17365,1e-09,aik_a2_theta.csv rate_ratio,PASS
+a2_lo_frag_g8,12,"multiplier 95% CI low, frag gamma=8",,1.16077,1.16077,1e-06,aik_a2_theta.csv rr_lo,PASS
+a2_hi_frag_g8,12,"multiplier 95% CI high, frag gamma=8",,1.18666,1.18666,1e-06,aik_a2_theta.csv rr_hi,PASS
+a2_pct_g2_display,"12,18","AUFR relative change per +0.1 contrast, cont gamma=2 (display rounding)",+6.0%,6.0,,0,aik_a2_theta.csv,PASS
+a2_pct_g4_display,"12,18","AUFR relative change per +0.1 contrast, cont gamma=4 (display rounding)",+10.9%,10.9,,0,aik_a2_theta.csv,PASS
+a2_pct_g8_display,"12,18","AUFR relative change per +0.1 contrast, cont gamma=8 (display rounding)",+18.4%,18.4,,0,aik_a2_theta.csv,PASS
+a2b_cont_g2_delta,13,"U residual-deviance reduction, cont gamma=2, delta",,0.159959,0.159959,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g2_x_upper,13,"U residual-deviance reduction, cont gamma=2, x_upper",,0.705547,0.705547,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g2_M_above,13,"U residual-deviance reduction, cont gamma=2, M_above",,0.355452,0.355452,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g4_delta,13,"U residual-deviance reduction, cont gamma=4, delta",,0.102206,0.102206,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g4_x_upper,13,"U residual-deviance reduction, cont gamma=4, x_upper",,0.601231,0.601231,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g4_M_above,13,"U residual-deviance reduction, cont gamma=4, M_above",,0.397414,0.397414,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g8_delta,13,"U residual-deviance reduction, cont gamma=8, delta",,0.039033,0.039033,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g8_x_upper,13,"U residual-deviance reduction, cont gamma=8, x_upper",,0.457613,0.457613,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_cont_g8_M_above,13,"U residual-deviance reduction, cont gamma=8, M_above",,0.293755,0.293755,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g2_delta,13,"U residual-deviance reduction, frag gamma=2, delta",,0.217697,0.217697,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g2_x_upper,13,"U residual-deviance reduction, frag gamma=2, x_upper",,0.669214,0.669214,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g2_M_above,13,"U residual-deviance reduction, frag gamma=2, M_above",,0.567012,0.567012,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g4_delta,13,"U residual-deviance reduction, frag gamma=4, delta",,0.164018,0.164018,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g4_x_upper,13,"U residual-deviance reduction, frag gamma=4, x_upper",,0.639953,0.639953,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g4_M_above,13,"U residual-deviance reduction, frag gamma=4, M_above",,0.490761,0.490761,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g8_delta,13,"U residual-deviance reduction, frag gamma=8, delta",,0.0637711,0.0637711,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g8_x_upper,13,"U residual-deviance reduction, frag gamma=8, x_upper",,0.471264,0.471264,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_frag_g8_M_above,13,"U residual-deviance reduction, frag gamma=8, M_above",,0.404784,0.404784,1e-06,aik_a2b_constructs.csv dev_explained,PASS
+a2b_display_delta_display,13,U deviance reduction gamma=4 cont delta (display rounding),10.2%,10.2,,0,aik_a2b_constructs.csv,PASS
+a2b_display_x_upper_display,13,U deviance reduction gamma=4 cont x_upper (display rounding),60.1%,60.1,,0,aik_a2b_constructs.csv,PASS
+a2b_display_M_above_display,13,U deviance reduction gamma=4 cont M_above (display rounding),39.7%,39.7,,0,aik_a2b_constructs.csv,PASS
+a3_erosion_g2,14,Additive AUFR slope erosion gamma=2,,0.0672308,0.0672308,1e-09,aik_a3_moderation.csv erosion,PASS
+a3_ci_lo_g2,14,"Erosion 95% CI low gamma=2 (independent bootstrap B=600, tolerance 1.5 pp)",,0.0268895,0.0277916,0.015,aik_a3_moderation.csv erosion_lo (R B=2000),PASS
+a3_ci_hi_g2,14,"Erosion 95% CI high gamma=2 (independent bootstrap B=600, tolerance 1.5 pp)",,0.105124,0.105209,0.015,aik_a3_moderation.csv erosion_hi (R B=2000),PASS
+a3_erosion_g4,14,Additive AUFR slope erosion gamma=4,,0.0077156,0.0077156,1e-09,aik_a3_moderation.csv erosion,PASS
+a3_ci_lo_g4,14,"Erosion 95% CI low gamma=4 (independent bootstrap B=600, tolerance 1.5 pp)",,-0.0411401,-0.0360207,0.015,aik_a3_moderation.csv erosion_lo (R B=2000),PASS
+a3_ci_hi_g4,14,"Erosion 95% CI high gamma=4 (independent bootstrap B=600, tolerance 1.5 pp)",,0.052244,0.0571986,0.015,aik_a3_moderation.csv erosion_hi (R B=2000),PASS
+a3_erosion_g8,14,Additive AUFR slope erosion gamma=8,,0.0167038,0.0167038,1e-09,aik_a3_moderation.csv erosion,PASS
+a3_ci_lo_g8,14,"Erosion 95% CI low gamma=8 (independent bootstrap B=600, tolerance 1.5 pp)",,-0.0640582,-0.0598667,0.015,aik_a3_moderation.csv erosion_lo (R B=2000),PASS
+a3_ci_hi_g8,14,"Erosion 95% CI high gamma=8 (independent bootstrap B=600, tolerance 1.5 pp)",,0.0855537,0.0846813,0.015,aik_a3_moderation.csv erosion_hi (R B=2000),PASS
+a3_display_g2_display,14,Erosion estimate gamma=2 (display rounding),6.7%,6.7,,0,,PASS
+a3_display_lo_g2_display,14,Erosion CI low gamma=2 (display rounding),2.7,2.7,,0,,PASS
+a3_display_hi_g2_display,14,Erosion CI high gamma=2 (display rounding),10.5,10.5,,0,,PASS
+a3_display_g4_display,14,Erosion estimate gamma=4 (display rounding),0.8%,0.8,,0,,PASS
+a3_display_lo_g4_display,14,Erosion CI low gamma=4 (display rounding),-4.1,-4.1,,0,,PASS
+a3_display_hi_g4_display,14,Erosion CI high gamma=4 (display rounding),5.2,5.2,,0,,PASS
+a3_display_g8_display,14,Erosion estimate gamma=8 (display rounding),1.7%,1.7,,0,,PASS
+a3_display_lo_g8_display,14,Erosion CI low gamma=8 (display rounding),-6.4,-6.4,,0,,PASS
+a3_display_hi_g8_display,14,Erosion CI high gamma=8 (display rounding),8.6,8.6,,0,,PASS
+u1gap_g0_display,14,Segmented first-boundary U gap gamma=0 (display rounding),-20.6,-20.6,,0,aik_boundary_rep.csv,PASS
+u1gap_g2_display,14,Segmented first-boundary U gap gamma=2 (display rounding),-18.5,-18.5,,0,aik_boundary_rep.csv,PASS
+u1gap_g4_display,14,Segmented first-boundary U gap gamma=4 (display rounding),-14.8,-14.8,,0,aik_boundary_rep.csv,PASS
+u1gap_g8_display,14,Segmented first-boundary U gap gamma=8 (display rounding),-9.2,-9.2,,0,aik_boundary_rep.csv,PASS
+weights_TOP1,15,TOP1 floor proportions 1F-9F vs realised x_lower/x_upper,,1.65,1.65,1e-09,aik_program_circulation.R PATTERN_X; boundary_rep x_upper,PASS
+budget_TOP1,15,TOP1 sum 2F-9F,1.60,1.6,1.6,1e-06,aik_checks.csv budget_S01_S08,PASS
+budget_TOP1_display,15,TOP1 sum 2F-9F (display rounding),1.60,1.60,,0,,PASS
+weights_STEP3,15,STEP3 floor proportions 1F-9F vs realised x_lower/x_upper,,1.65,1.65,1e-09,aik_program_circulation.R PATTERN_X; boundary_rep x_upper,PASS
+budget_STEP3,15,STEP3 sum 2F-9F,1.60,1.6,1.6,1e-06,aik_checks.csv budget_S01_S08,PASS
+budget_STEP3_display,15,STEP3 sum 2F-9F (display rounding),1.60,1.60,,0,,PASS
+weights_UNIFORM,15,UNIFORM floor proportions 1F-9F vs realised x_lower/x_upper,,1.65,1.65,1e-09,aik_program_circulation.R PATTERN_X; boundary_rep x_upper,PASS
+budget_UNIFORM,15,UNIFORM sum 2F-9F,1.60,1.6,1.6,1e-06,aik_checks.csv budget_S01_S08,PASS
+budget_UNIFORM_display,15,UNIFORM sum 2F-9F (display rounding),1.60,1.60,,0,,PASS
+weights_LOW3,15,LOW3 floor proportions 1F-9F vs realised x_lower/x_upper,,1.65,1.65,1e-09,aik_program_circulation.R PATTERN_X; boundary_rep x_upper,PASS
+budget_LOW3,15,LOW3 sum 2F-9F,1.60,1.6,1.6,1e-06,aik_checks.csv budget_S01_S08,PASS
+budget_LOW3_display,15,LOW3 sum 2F-9F (display rounding),1.60,1.60,,0,,PASS
+a4_T_TOP1,"16,18",TOP1 mean per-repetition T = U8/U1 (gamma=4 cont),,0.587498,0.587498,1e-12,aik_a4_reach.csv T_mean,PASS
+a4_U8_TOP1,"16,18",TOP1 mean U8 (gamma=4 cont),,9112.36,9112.36,1e-06,aik_e2_profile.csv U_mean b=8,PASS
+a4_RUI_TOP1_b1,16,TOP1 mean RUI boundary 1,,1,1,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b2,16,TOP1 mean RUI boundary 2,,0.757217,0.757217,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b3,16,TOP1 mean RUI boundary 3,,0.609697,0.609697,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b4,16,TOP1 mean RUI boundary 4,,0.526628,0.526628,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b5,16,TOP1 mean RUI boundary 5,,0.478524,0.478524,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b6,16,TOP1 mean RUI boundary 6,,0.456312,0.456312,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b7,16,TOP1 mean RUI boundary 7,,0.464766,0.464766,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_TOP1_b8,16,TOP1 mean RUI boundary 8,,0.587498,0.587498,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_T_STEP3,"16,18",STEP3 mean per-repetition T = U8/U1 (gamma=4 cont),,0.14028,0.14028,1e-12,aik_a4_reach.csv T_mean,PASS
+a4_U8_STEP3,"16,18",STEP3 mean U8 (gamma=4 cont),,2196.63,2196.63,1e-06,aik_e2_profile.csv U_mean b=8,PASS
+a4_RUI_STEP3_b1,16,STEP3 mean RUI boundary 1,,1,1,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b2,16,STEP3 mean RUI boundary 2,,0.984136,0.984136,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b3,16,STEP3 mean RUI boundary 3,,0.573513,0.573513,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b4,16,STEP3 mean RUI boundary 4,,0.411873,0.411873,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b5,16,STEP3 mean RUI boundary 5,,0.39042,0.39042,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b6,16,STEP3 mean RUI boundary 6,,0.210677,0.210677,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b7,16,STEP3 mean RUI boundary 7,,0.149624,0.149624,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_STEP3_b8,16,STEP3 mean RUI boundary 8,,0.14028,0.14028,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_T_UNIFORM,"16,18",UNIFORM mean per-repetition T = U8/U1 (gamma=4 cont),,0.0587551,0.0587551,1e-12,aik_a4_reach.csv T_mean,PASS
+a4_U8_UNIFORM,"16,18",UNIFORM mean U8 (gamma=4 cont),,974.88,974.88,1e-06,aik_e2_profile.csv U_mean b=8,PASS
+a4_RUI_UNIFORM_b1,16,UNIFORM mean RUI boundary 1,,1,1,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b2,16,UNIFORM mean RUI boundary 2,,0.739415,0.739415,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b3,16,UNIFORM mean RUI boundary 3,,0.50684,0.50684,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b4,16,UNIFORM mean RUI boundary 4,,0.351478,0.351478,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b5,16,UNIFORM mean RUI boundary 5,,0.245295,0.245295,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b6,16,UNIFORM mean RUI boundary 6,,0.168341,0.168341,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b7,16,UNIFORM mean RUI boundary 7,,0.109328,0.109328,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_UNIFORM_b8,16,UNIFORM mean RUI boundary 8,,0.0587551,0.0587551,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_T_LOW3,"16,18",LOW3 mean per-repetition T = U8/U1 (gamma=4 cont),,0.01504,0.01504,1e-12,aik_a4_reach.csv T_mean,PASS
+a4_U8_LOW3,"16,18",LOW3 mean U8 (gamma=4 cont),,285.54,285.54,1e-06,aik_e2_profile.csv U_mean b=8,PASS
+a4_RUI_LOW3_b1,16,LOW3 mean RUI boundary 1,,1,1,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b2,16,LOW3 mean RUI boundary 2,,0.998045,0.998045,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b3,16,LOW3 mean RUI boundary 3,,0.646636,0.646636,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b4,16,LOW3 mean RUI boundary 4,,0.163156,0.163156,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b5,16,LOW3 mean RUI boundary 5,,0.0844103,0.0844103,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b6,16,LOW3 mean RUI boundary 6,,0.0509459,0.0509459,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b7,16,LOW3 mean RUI boundary 7,,0.0304308,0.0304308,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_RUI_LOW3_b8,16,LOW3 mean RUI boundary 8,,0.01504,0.01504,1e-12,aik_e2_profile.csv RUI_mean,PASS
+a4_T_TOP1_display,"16,18",TOP1 T display (display rounding),58.7%,58.7,,0,,PASS
+a4_T_STEP3_display,"16,18",STEP3 T display (display rounding),14.0%,14.0,,0,,PASS
+a4_T_UNIFORM_display,"16,18",UNIFORM T display (display rounding),5.9%,5.9,,0,,PASS
+a4_T_LOW3_display,"16,18",LOW3 T display (display rounding),1.5%,1.5,,0,,PASS
+a4_U8_TOP1_display,"16,18",TOP1 U8 display (display rounding),"9,112","9,112",,0,,PASS
+a4_U8_STEP3_display,"16,18",STEP3 U8 display (display rounding),"2,197","2,197",,0,,PASS
+a4_U8_UNIFORM_display,"16,18",UNIFORM U8 display (display rounding),975,975,,0,,PASS
+a4_U8_LOW3_display,"16,18",LOW3 U8 display (display rounding),286,286,,0,,PASS
+top1_rebound_b6_display,16,TOP1 mean U boundary 6 (upper rebound) (display rounding),"7,077","7,077",,0,aik_e2_profile.csv,PASS
+top1_rebound_b7_display,16,TOP1 mean U boundary 7 (upper rebound) (display rounding),"7,209","7,209",,0,aik_e2_profile.csv,PASS
+top1_rebound_b8_display,16,TOP1 mean U boundary 8 (upper rebound) (display rounding),"9,112","9,112",,0,aik_e2_profile.csv,PASS
+a4_holm,16,Primary T contrasts (cont) Holm p < 0.001,p < 0.001,1,1,0,aik_a4_contrasts.csv p_holm,PASS
