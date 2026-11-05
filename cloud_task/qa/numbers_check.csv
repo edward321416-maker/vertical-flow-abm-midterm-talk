@@ -1,0 +1,200 @@
+kind,slide,item,expected,observed,result
+structure,0,page count = 18,18,18,PASS
+structure,0,page size 960x540 (16:9),960x540,960x540,PASS
+recompute,9,total runs,2600,2600,PASS
+recompute,9,E1 runs,1600,1600,PASS
+recompute,9,E2 runs,1000,1000,PASS
+recompute,9,every run has 8 boundaries,8,8,PASS
+recompute,9,no boundary with U = 0,0,0,PASS
+summary,9,aik_checks: missing boundaries / zero U,0 / 0,0 / 0,PASS
+printed,9,"1,600회","1,600회",,PASS
+printed,9,"1,000회","1,000회",,PASS
+printed,9,"2,600회","2,600회",,PASS
+printed,9,경계누락0,경계누락0,,PASS
+printed,9,U=0사례0,U=0사례0,,PASS
+recompute,10,U mean cont b=1 (rep vs profile CSV),12346.4,12346.4,PASS
+printed,10,"12,346","12,346",,PASS
+recompute,10,U mean cont b=2 (rep vs profile CSV),7372.99,7372.99,PASS
+printed,10,"7,373","7,373",,PASS
+recompute,10,U mean cont b=3 (rep vs profile CSV),4654.05,4654.05,PASS
+printed,10,"4,654","4,654",,PASS
+recompute,10,U mean cont b=4 (rep vs profile CSV),3068.07,3068.07,PASS
+printed,10,"3,068","3,068",,PASS
+recompute,10,U mean cont b=5 (rep vs profile CSV),2064.69,2064.69,PASS
+printed,10,"2,065","2,065",,PASS
+recompute,10,U mean cont b=6 (rep vs profile CSV),1378.95,1378.95,PASS
+printed,10,"1,379","1,379",,PASS
+recompute,10,U mean cont b=7 (rep vs profile CSV),866.925,866.925,PASS
+printed,10,867,867,,PASS
+recompute,10,U mean cont b=8 (rep vs profile CSV),447.76,447.76,PASS
+printed,10,448,448,,PASS
+recompute,10,U mean frag b=1 (rep vs profile CSV),9802.1,9802.1,PASS
+printed,10,"9,802","9,802",,PASS
+recompute,10,U mean frag b=2 (rep vs profile CSV),5648.57,5648.57,PASS
+printed,10,"5,649","5,649",,PASS
+recompute,10,U mean frag b=3 (rep vs profile CSV),3672.14,3672.14,PASS
+printed,10,"3,672","3,672",,PASS
+recompute,10,U mean frag b=4 (rep vs profile CSV),2537.68,2537.68,PASS
+printed,10,"2,538","2,538",,PASS
+recompute,10,U mean frag b=5 (rep vs profile CSV),1795.93,1795.93,PASS
+printed,10,"1,796","1,796",,PASS
+recompute,10,U mean frag b=6 (rep vs profile CSV),1241.38,1241.38,PASS
+printed,10,"1,241","1,241",,PASS
+recompute,10,U mean frag b=7 (rep vs profile CSV),795.99,795.99,PASS
+printed,10,796,796,,PASS
+recompute,10,U mean frag b=8 (rep vs profile CSV),408.29,408.29,PASS
+printed,10,408,408,,PASS
+recompute,10,cont mean_r(U8/U1),0.036,0.0363039,PASS
+printed,10,3.6%,3.6%,,PASS
+recompute,10,frag first-boundary U lower than cont (ratio of cell means),0.206,0.206076,PASS
+printed,10,20.6%,20.6%,,PASS
+printed,10,"12,346명","12,346명",,PASS
+printed,10,"9,802명","9,802명",,PASS
+printed,10,448명,448명,,PASS
+printed,10,408명,408명,,PASS
+recompute,11,AUFR mean cont b=2,0.597241,0.597241,PASS
+recompute,11,band = run-value percentile 2.5 cont b=2,0.581606,0.581606,PASS
+recompute,11,band = run-value percentile 97.5 cont b=2,0.61002,0.61002,PASS
+recompute,11,AUFR mean cont b=3,0.631321,0.631321,PASS
+recompute,11,band = run-value percentile 2.5 cont b=3,0.613814,0.613814,PASS
+recompute,11,band = run-value percentile 97.5 cont b=3,0.651342,0.651342,PASS
+recompute,11,AUFR mean cont b=4,0.659317,0.659317,PASS
+recompute,11,band = run-value percentile 2.5 cont b=4,0.636366,0.636366,PASS
+recompute,11,band = run-value percentile 97.5 cont b=4,0.684931,0.684931,PASS
+recompute,11,AUFR mean cont b=5,0.672962,0.672962,PASS
+recompute,11,band = run-value percentile 2.5 cont b=5,0.644382,0.644382,PASS
+recompute,11,band = run-value percentile 97.5 cont b=5,0.701022,0.701022,PASS
+recompute,11,AUFR mean cont b=6,0.668246,0.668246,PASS
+recompute,11,band = run-value percentile 2.5 cont b=6,0.62795,0.62795,PASS
+recompute,11,band = run-value percentile 97.5 cont b=6,0.703619,0.703619,PASS
+recompute,11,AUFR mean cont b=7,0.628646,0.628646,PASS
+recompute,11,band = run-value percentile 2.5 cont b=7,0.587621,0.587621,PASS
+recompute,11,band = run-value percentile 97.5 cont b=7,0.676904,0.676904,PASS
+recompute,11,AUFR mean cont b=8,0.516842,0.516842,PASS
+recompute,11,band = run-value percentile 2.5 cont b=8,0.461887,0.461887,PASS
+recompute,11,band = run-value percentile 97.5 cont b=8,0.581545,0.581545,PASS
+printed,11,51.7%,51.7%,,PASS
+recompute,11,AUFR mean frag b=2,0.576165,0.576165,PASS
+recompute,11,band = run-value percentile 2.5 frag b=2,0.561207,0.561207,PASS
+recompute,11,band = run-value percentile 97.5 frag b=2,0.591981,0.591981,PASS
+recompute,11,AUFR mean frag b=3,0.650074,0.650074,PASS
+recompute,11,band = run-value percentile 2.5 frag b=3,0.629624,0.629624,PASS
+recompute,11,band = run-value percentile 97.5 frag b=3,0.671401,0.671401,PASS
+recompute,11,AUFR mean frag b=4,0.691185,0.691185,PASS
+recompute,11,band = run-value percentile 2.5 frag b=4,0.666911,0.666911,PASS
+recompute,11,band = run-value percentile 97.5 frag b=4,0.713951,0.713951,PASS
+recompute,11,AUFR mean frag b=5,0.707551,0.707551,PASS
+recompute,11,band = run-value percentile 2.5 frag b=5,0.678676,0.678676,PASS
+recompute,11,band = run-value percentile 97.5 frag b=5,0.735887,0.735887,PASS
+recompute,11,AUFR mean frag b=6,0.69127,0.69127,PASS
+recompute,11,band = run-value percentile 2.5 frag b=6,0.656432,0.656432,PASS
+recompute,11,band = run-value percentile 97.5 frag b=6,0.726522,0.726522,PASS
+recompute,11,AUFR mean frag b=7,0.641334,0.641334,PASS
+recompute,11,band = run-value percentile 2.5 frag b=7,0.598899,0.598899,PASS
+recompute,11,band = run-value percentile 97.5 frag b=7,0.681921,0.681921,PASS
+recompute,11,AUFR mean frag b=8,0.513167,0.513167,PASS
+recompute,11,band = run-value percentile 2.5 frag b=8,0.45842,0.45842,PASS
+recompute,11,band = run-value percentile 97.5 frag b=8,0.561685,0.561685,PASS
+printed,11,51.3%,51.3%,,PASS
+recompute,11,band is wider than a 95% CI of the mean (cont b=2),band half-width 0.0142 > CI half-width 0.0011,,PASS
+printed,11,평균의95%신뢰구간이아니다,평균의95%신뢰구간이아니다,,PASS
+summary,11,F cont,1302,1301.6,PASS
+printed,11,"F=1,302","F=1,302",,PASS
+summary,11,F frag,1977,1976.8,PASS
+printed,11,"F=1,977","F=1,977",,PASS
+printed,8,"4,654명","4,654명",,PASS
+printed,8,"3,068명","3,068명",,PASS
+printed,8,0.659,0.659,,PASS
+recompute,12,theta g=2 (OLS with boundary FE),0.0582452,0.0582452,PASS
+printed,12,+6.0%,+6.0%,,PASS
+printed,12,95% CI 5.8 – 6.2,95% CI 5.8 – 6.2,,PASS
+recompute,12,theta g=4 (OLS with boundary FE),0.103808,0.103808,PASS
+printed,12,+10.9%,+10.9%,,PASS
+printed,12,95% CI 10.4 – 11.5,95% CI 10.4 – 11.5,,PASS
+recompute,12,theta g=8 (OLS with boundary FE),0.16866,0.16866,PASS
+printed,12,+18.4%,+18.4%,,PASS
+printed,12,95% CI 16.8 – 20.0,95% CI 16.8 – 20.0,,PASS
+summary,12,gamma=0 control CI contains 1,rr_lo<1<rr_hi,0.99848..1.00017,PASS
+printed,12,퍼센트포인트가아님,퍼센트포인트가아님,,PASS
+printed,12,−0.07%,−0.07%,,PASS
+printed,12,95% CI −0.15 – 0.02 · 0 포함,95% CI −0.15 – 0.02 · 0 포함,,PASS
+summary,13,adjacent contrast (Delta) gamma=4 cont,10.2,10.22,PASS
+printed,13,10.2%,10.2%,,PASS
+printed,13,범위 4–22%,범위 4–22%,,PASS
+summary,13,upper-floor program gamma=4 cont,60.1,60.12,PASS
+printed,13,60.1%,60.1%,,PASS
+printed,13,범위 46–71%,범위 46–71%,,PASS
+summary,13,mean program above boundary gamma=4 cont,39.7,39.74,PASS
+printed,13,39.7%,39.7%,,PASS
+printed,13,범위 29–57%,범위 29–57%,,PASS
+recompute,14,additive slope cont g=2,0.0362544,0.0362544,PASS
+recompute,14,erosion g=2 = 1 - s_frag/s_cont,0.0672308,0.0672308,PASS
+summary,14,erosion g=2 [CI],"6.7 [2.7, 10.5]","6.72 [2.69, 10.51]",PASS
+printed,14,6.7%,6.7%,,PASS
+printed,14,"[2.7, 10.5]","[2.7, 10.5]",,PASS
+printed,14,0을 제외,0을 제외,,PASS
+recompute,14,additive slope cont g=4,0.0643279,0.0643279,PASS
+recompute,14,erosion g=4 = 1 - s_frag/s_cont,0.0077156,0.0077156,PASS
+summary,14,erosion g=4 [CI],"0.8 [-4.1, 5.2]","0.77 [-4.11, 5.22]",PASS
+printed,14,0.8%,0.8%,,PASS
+printed,14,"[−4.1, 5.2]","[−4.1, 5.2]",,PASS
+printed,14,0을 포함,0을 포함,,PASS
+recompute,14,additive slope cont g=8,0.0939228,0.0939228,PASS
+recompute,14,erosion g=8 = 1 - s_frag/s_cont,0.0167038,0.0167038,PASS
+summary,14,erosion g=8 [CI],"1.7 [-6.4, 8.6]","1.67 [-6.41, 8.56]",PASS
+printed,14,1.7%,1.7%,,PASS
+printed,14,"[−6.4, 8.6]","[−6.4, 8.6]",,PASS
+printed,14,0을 포함,0을 포함,,PASS
+recompute,15,TOP1 2–9F sum,1.6,1.600001,PASS
+recompute,15,STEP3 2–9F sum,1.6,1.600000,PASS
+recompute,15,UNIFORM 2–9F sum,1.6,1.600000,PASS
+recompute,15,LOW3 2–9F sum,1.6,1.600000,PASS
+recompute,15,TOP1 shares 2F..9F from run CSV,"[0.107143, 0.107143, 0.107143, 0.107143, 0.107143, 0.107143, 0.107143, 0.85]","[0.107143, 0.107143, 0.107143, 0.107143, 0.107143, 0.107143, 0.107143, 0.85]",PASS
+recompute,15,STEP3 shares 2F..9F from run CSV,"[0.05, 0.45, 0.05, 0.05, 0.45, 0.05, 0.05, 0.45]","[0.05, 0.45, 0.05, 0.05, 0.45, 0.05, 0.05, 0.45]",PASS
+recompute,15,UNIFORM shares 2F..9F from run CSV,"[0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]","[0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]",PASS
+recompute,15,LOW3 shares 2F..9F from run CSV,"[0.45, 0.45, 0.45, 0.05, 0.05, 0.05, 0.05, 0.05]","[0.45, 0.45, 0.45, 0.05, 0.05, 0.05, 0.05, 0.05]",PASS
+printed,15,2–9층 합계 1.60,2–9층 합계 1.60,,PASS
+recompute,16,TOP1 T = mean_r(U8/U1),0.587498,0.587498,PASS
+recompute,16,"TOP1 R = mean_r(mean_b RUI, b=2..8)",0.554377,0.554377,PASS
+recompute,16,TOP1 T differs from ratio of means (method check),0.5875,0.5873,PASS
+printed,16,58.7%,58.7%,,PASS
+printed,16,55.4%,55.4%,,PASS
+printed,16,"9,112","9,112",,PASS
+recompute,16,STEP3 T = mean_r(U8/U1),0.14028,0.14028,PASS
+recompute,16,"STEP3 R = mean_r(mean_b RUI, b=2..8)",0.408646,0.408646,PASS
+recompute,16,STEP3 T differs from ratio of means (method check),0.1403,0.1404,PASS
+printed,16,14.0%,14.0%,,PASS
+printed,16,40.9%,40.9%,,PASS
+printed,16,"2,197","2,197",,PASS
+recompute,16,UNIFORM T = mean_r(U8/U1),0.0587551,0.0587551,PASS
+recompute,16,"UNIFORM R = mean_r(mean_b RUI, b=2..8)",0.31135,0.31135,PASS
+recompute,16,UNIFORM T differs from ratio of means (method check),0.0588,0.0588,PASS
+printed,16,5.9%,5.9%,,PASS
+printed,16,31.1%,31.1%,,PASS
+printed,16,975,975,,PASS
+recompute,16,LOW3 T = mean_r(U8/U1),0.01504,0.01504,PASS
+recompute,16,"LOW3 R = mean_r(mean_b RUI, b=2..8)",0.284095,0.284095,PASS
+recompute,16,LOW3 T differs from ratio of means (method check),0.0150,0.0150,PASS
+printed,16,1.5%,1.5%,,PASS
+printed,16,28.4%,28.4%,,PASS
+printed,16,286,286,,PASS
+printed,18,3.6%,3.6%,,PASS
+printed,18,51.7%,51.7%,,PASS
+printed,18,+6.0,+6.0,,PASS
+printed,18,+10.9,+10.9,,PASS
+printed,18,+18.4%,+18.4%,,PASS
+printed,18,6.7%,6.7%,,PASS
+printed,18,58.7%,58.7%,,PASS
+printed,18,"9,112명","9,112명",,PASS
+wording,0,absent: 유인이 없 (without 앵커),0,0,PASS
+wording,0,absent: 프로그램유인이없,0,0,PASS
+wording,0,absent: 퍼센트포인트상승,0,0,PASS
+wording,0,absent: 퍼센트포인트증가했,0,0,PASS
+wording,0,absent: 학술발표,0,0,PASS
+wording,0,absent: RQ1·RQ2,0,0,PASS
+wording,0,absent: RQ3·RQ4,0,0,PASS
+wording,0,absent: 종합결론,0,0,PASS
+wording,0,"gamma=0 phrased as ""추가 앵커 유인이 없는 조건"" (pages)",>=4 pages,4,PASS
+printed,1,논문 중간발표,논문 중간발표,,PASS
+printed,2,층간 상행유량 감소와 프로그램 구성,층간 상행유량 감소와 프로그램 구성,,PASS
+printed,2,이동 저항과 앵커 배치에 따른 차이,이동 저항과 앵커 배치에 따른 차이,,PASS

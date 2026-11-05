@@ -1,9 +1,20 @@
+"""Build the midterm deck PDF from the repository's analysis CSVs.
+
+Usage (from any working directory):
+    python3 cloud_task/src/build.py [output.pdf]
+Default output: cloud_task/output/vertical_flow_midterm_refined.pdf
+A title/label inventory CSV is written next to the PDF as title_inventory.csv.
+"""
 import sys, math, csv
+from pathlib import Path
 import pandas as pd
-sys.path.insert(0, '/home/user/vertical-flow-abm-midterm-talk/cloud_task/src')
+
+SRC_DIR = Path(__file__).resolve().parent
+REPO = SRC_DIR.parents[1]
+sys.path.insert(0, str(SRC_DIR))
 from lib import *
 
-D = '/home/user/vertical-flow-abm-midterm-talk/analysis/outputs/aik/'
+D = str(REPO / 'analysis' / 'outputs' / 'aik') + '/'
 prof = pd.read_csv(D + 'aik_a1_profile.csv')
 theta = pd.read_csv(D + 'aik_a2_theta.csv')
 cons = pd.read_csv(D + 'aik_a2b_constructs.csv')
@@ -12,7 +23,9 @@ reach = pd.read_csv(D + 'aik_a4_reach.csv')
 e2 = pd.read_csv(D + 'aik_e2_profile.csv')
 shape = pd.read_csv(D + 'aik_a1_shape.csv')
 
-OUT = sys.argv[1]
+OUT = str(Path(sys.argv[1]).resolve()) if len(sys.argv) > 1 else \
+    str(REPO / 'cloud_task' / 'output' / 'vertical_flow_midterm_refined.pdf')
+Path(OUT).parent.mkdir(parents=True, exist_ok=True)
 d = Deck(OUT)
 SRC = '출처: 수정 논문 8쪽 · 분석 CSV(analysis/outputs/aik)'
 
@@ -39,8 +52,6 @@ def fmt_int(v):
 # ---------------------------------------------------------------- 01 cover
 c = d.slide('논문 중간발표', '', '')
 d.inventory.clear(); d.inventory.append((1, 'title', '다층 상업시설의 프로그램 배치와 수직동선 마찰이 층간 상행유량에 미치는 영향'))
-# overwrite header drawn by slide(): repaint white
-rect(c, 0, 0, W, 140, fill=HexColor('#FFFFFF'))
 text(c, ML, 150, '논문 중간발표', 13, 'B', K75)
 line(c, ML, 164, ML + 28, 164, K100, 1.2)
 y = 214
@@ -101,7 +112,7 @@ line(c, W / 2, 160, W / 2, 452, K12, .75)
 rx0 = W / 2 + 40
 text(c, rx0, 166, '② 직전 경계를 100%로 놓은 비율 (AUFR)', 13, 'B')
 text(c, rx0, 184, '유지된 정도는 50%와 95%로 크게 다르다', 11.5, 'R', K55)
-bw = 340
+bw = 312
 for nm, a, b, yy in cases:
     text(c, rx0, yy + 18, nm, 12, 'B')
     rect(c, rx0 + 62, yy, bw * .8, 18, fill=K30)
@@ -149,7 +160,7 @@ for i, (lab, q, sym, fr, defs, warn) in enumerate(cols):
 c = d.slide('02 선행연구와 핵심 질문', '실제 다층 공간 연구에서 합성 층 모형으로 범위를 좁혔다',
             'Chang & Penn(1998)은 관측·모형화 연구이며, 본 연구는 그 결과를 재현하거나 검증하지 않는다',
             '출처: Chang & Penn (1998), Environment and Planning B 25(4), 507–538 · 수정 논문 2장')
-cx0, cx1 = 330, 630
+cx0, cx1 = 404, 556
 text(c, cx0 - 24, 148, 'Chang & Penn (1998)', 15, 'B', K100, 'r')
 text(c, cx0 - 24, 167, '실제 다층 복합공간의 관찰·모형화', 11, 'R', K55, 'r')
 text(c, cx1 + 24, 148, '본 연구', 15, 'B', K100)
@@ -162,21 +173,22 @@ rows = [
     ('해석 범위', '실제 복합지역의 이동 분포 설명', '명시한 모형과 네 배치 안의 조건부 결과'),
 ]
 for i, (lab, l, r) in enumerate(rows):
-    y0 = 188 + i * 56
+    y0 = 188 + i * 52
     line(c, ML, y0, W - ML, y0, K12, .75)
-    text(c, (cx0 + cx1) / 2, y0 + 33, lab, 11.5, 'B', K55, 'c')
-    wrap(c, cx0 - 24, y0 + 25, l, 260, 12.5, 'R', K100, 1.35, 'r')
-    wrap(c, cx1 + 24, y0 + 25, r, 260, 12.5, 'R', K100, 1.35)
-line(c, cx0 + 6, 180, cx0 + 6, 468, K12, .75); line(c, cx1 - 6, 180, cx1 - 6, 468, K12, .75)
-line(c, ML, 468, W - ML, 468, K12, .75)
-text(c, ML, 492, '두 연구는 복제·검증 관계가 아니라 연구 문제의 계보로 이어진다.', 12.5, 'B')
+    text(c, (cx0 + cx1) / 2, y0 + 31, lab, 11.5, 'B', K55, 'c')
+    for s_, x_, al in ((l, cx0 - 24, 'r'), (r, cx1 + 24, 'l')):
+        assert tw(s_, 12.5) <= cx0 - 24 - ML, s_  # one line per cell, no orphan wraps
+        text(c, x_, y0 + 31, s_, 12.5, 'R', K100, al)
+line(c, cx0 + 6, 180, cx0 + 6, 448, K12, .75); line(c, cx1 - 6, 180, cx1 - 6, 448, K12, .75)
+line(c, ML, 448, W - ML, 448, K12, .75)
+text(c, ML, 478, '두 연구는 복제·검증 관계가 아니라 연구 문제의 계보로 이어진다.', 12.5, 'B')
 d.note('compare', 'Chang & Penn vs 본 연구 5행')
 
 # ---------------------------------------------------------------- 06 questions
 c = d.slide('02 선행연구와 핵심 질문', '이 발표가 확인하려는 네 가지 질문',
             '질문마다 사용하는 지표와 실험 조건이 다르다', SRC)
 qs = [
-    ('RQ1', '프로그램 유인이 없을 때, 위층으로 갈수록 상행유량은 어떻게 줄어드는가?', '유인 계수 γ = 0 · U와 국소 AUFR'),
+    ('RQ1', '추가 앵커 유인이 없을 때, 위층으로 갈수록 상행유량은 어떻게 줄어드는가?', 'γ = 0 (앵커 비중 효용항이 0) · U와 국소 AUFR'),
     ('RQ2', '인접한 두 층의 프로그램 차이는 상행유량비와 어떤 관계가 있는가?', 'Δx 0.1 증가당 AUFR 상대 변화 · U 보조 분석'),
     ('RQ3', '이동 저항이 커지면 이 관계는 약해지는가?', '연속형 대 분절형 · 기울기 잠식률과 95% 신뢰구간'),
     ('RQ4', '프로그램 총량이 같을 때, 배치만 바꾸면 최상단 유량이 달라지는가?', 'TOP1 · STEP3 · UNIFORM · LOW3 · 상대 유량 T'),
@@ -207,7 +219,7 @@ for b in range(1, 9):  # boundary b between floor b and b+1
     c.setFillColor(K100)
     text(c, ML + 262, yy + 4, f'U_{{{b}}}', 11.5, 'B')
     text(c, ML + 292, yy + 4, f'{b}F→{b+1}F', 10, 'R', K55)
-text(c, ML + 40, fy0 + 9 * fh + 20, '경계 b = b층과 b+1층 사이를 상향 통과한 연인원', 10.5, 'R', K55)
+text(c, ML + 40, fy0 + 9 * fh + 20, 'U_{b}: b층과 b+1층 사이 경계를 위로 통과한 연인원', 10.5, 'R', K55)
 # right: choice chain
 rx = 470
 text(c, rx, 142, '선택 규칙: 방문 그룹 1개의 이동', 13, 'B')
@@ -228,7 +240,7 @@ for i, (t, s) in enumerate(steps):
 line(c, rx, 420, W - ML, 420, K12, .75)
 text(c, rx, 440, '목적지 효용', 11, 'B', K55)
 text(c, rx, 460, 'V_{ij} = ln A_{j} + γ x_{j} − α ln d_{ij} − β ln I_{ij}', 14, 'R', K100)
-text(c, rx, 480, 'γ는 실측 집객 계수가 아니라 가정한 민감도 값이다', 11, 'R', K55)
+text(c, rx, 480, 'γ는 실측 집객 계수가 아닌 가정한 민감도 값 · 하행 편향항 δ_{down} = 0 (생략)', 11, 'R', K55)
 d.note('model', '9층 8경계 U1~U8, 4단계 선택 규칙')
 
 # ---------------------------------------------------------------- 08 AUFR zoom
@@ -249,12 +261,12 @@ text(c, fx, 440, '위로 통과한 연인원만 경계에 기록한다 (층 안�
 # right: formula
 rx = 640
 frac(c, rx + 70, 232, 'U_{4}', 'U_{3}', 30)
-text(c, rx - 10, 240, 'AUFR_{4}  =', 26, 'R', K100, 'r')
+text(c, rx + 40, 240, 'AUFR_{4}  =', 26, 'R', K100, 'r')
 text(c, rx, 300, '분자  U_{4}:  4F→5F 경계 통과량', 12.5, 'R', K75)
 text(c, rx, 324, '분모  U_{3}:  3F→4F 경계 통과량', 12.5, 'R', K75)
 line(c, rx, 346, W - ML, 346, K12, .75)
 text(c, rx, 372, '실제 값으로 읽기', 11, 'B', K55)
-text(c, rx, 394, '연속형 · γ=0 · 200회 평균', 11, 'R', K55)
+text(c, rx, 394, '연속형 · 추가 앵커 유인 없음(γ=0) · 200회 평균', 11, 'R', K55)
 text(c, rx, 418, 'U_{3} ≈ 4,654명,  U_{4} ≈ 3,068명', 12.5, 'R', K100)
 r4 = prof[(prof.cell_id == 'aik_e1_g0_cont') & (prof.boundary_order == 4)].iloc[0]
 text(c, rx, 442, f'AUFR_{{4}}(반복별 비율의 평균) = {r4.AUFR_mean:.3f}', 12.5, 'B')
@@ -282,21 +294,22 @@ text(c, ML, my0 + 2 * rh + 50, '경계 상행유량 U와 AUFR을 모든 셀에�
 text(c, ML, my0 + 2 * rh + 68, '각 층의 앵커 비중 x_{j}는 반복마다 0–0.5 균등분포에서 추출', 11, 'R', K55)
 line(c, W / 2 + 6, 140, W / 2 + 6, 440, K12, .75)
 # E2 matrix
-ex = W / 2 + 40
+ex = W / 2 + 24
 text(c, ex, 146, '실험 2 (E2)  총량 고정 · 배치 변형', 14, 'B')
 text(c, ex, 165, '2–9층 앵커 비중 합계 ≈ 1.60 · 1층 0.05 고정', 11.5, 'R', K55)
 pats = ['TOP1', 'STEP3', 'UNIFORM', 'LOW3']
-ew = 88
+ew = 74
+EL = 98  # label column width
 for j, p in enumerate(pats):
-    text(c, ex + 74 + j * ew + ew / 2, my0 - 8, p, 11.5, 'B', SC[p], 'c')
+    text(c, ex + EL + j * ew + ew / 2, my0 - 8, p, 11.5, 'B', SC[p], 'c')
 rows2 = [('γ=4 연속형', [100, 100, 100, 100]), ('γ=4 분절형', [100, 100, 100, 100]), ('γ=0 대조 연속형', [100, None, 100, None])]
 for i, (nm, vals) in enumerate(rows2):
     yy = my0 + i * 40
     text(c, ex, yy + 24, nm, 11, 'R', K75)
     for j, v in enumerate(vals):
         if v:
-            rect(c, ex + 74 + j * ew + 4, yy + 3, ew - 8, 32, stroke=SC[pats[j]], sw=1, dash=[3, 2] if i == 2 else None)
-            text(c, ex + 74 + j * ew + ew / 2, yy + 25, str(v), 13, 'R', K100, 'c')
+            rect(c, ex + EL + j * ew + 4, yy + 3, ew - 8, 32, stroke=SC[pats[j]], sw=1, dash=[3, 2] if i == 2 else None)
+            text(c, ex + EL + j * ew + ew / 2, yy + 25, str(v), 13, 'R', K100, 'c')
 text(c, ex, my0 + 3 * 40 + 22, '800회 + 200회 = 1,000회', 13, 'B')
 text(c, ex, my0 + 3 * 40 + 44, '가정한 유인 강도에서의 배치 비교이며 최적화 문제가 아니다', 11, 'R', K55)
 line(c, ML, 440, W - ML, 440, K12, .75)
@@ -306,13 +319,13 @@ text(c, ML, 488, 'γ는 실측 보정값이 아니라 모형 민감도를 확인
 d.note('design', 'E1 1600 + E2 1000 = 2600')
 
 # ---------------------------------------------------------------- 10 U profile
-c = d.slide('04 층간 상행유량 감소와 프로그램 구성', '추가 유인이 없는 조건에서도 상행유량은 위로 갈수록 줄었다',
-            '유인 계수 γ = 0 · 경계별 평균 상행유량 U (반복별 4일 합계의 200회 평균)', SRC)
-ax = Ax(ML + 54, 150, ML + 600, 380, (1, 8), (0, 14000))
+c = d.slide('04 층간 상행유량 감소와 프로그램 구성', '추가 앵커 유인이 없는 조건에서도 상행유량은 위로 갈수록 줄었다',
+            '추가 앵커 유인이 없는 조건(γ = 0) · 경계별 평균 상행유량 U (반복별 4일 합계의 200회 평균)', SRC)
+ax = Ax(ML + 54, 150, ML + 560, 380, (1, 8), (0, 14000))
 for v in range(0, 14001, 3500):
     line(c, ax.x0, ax.Yv(v), ax.x1, ax.Yv(v), K12, .75)
     text(c, ax.x0 - 8, ax.Yv(v) + 4, f'{v:,}', 10.5, 'R', K55, 'r')
-text(c, ax.x0 - 8, 140, '상행 통과량(명)', 10.5, 'R', K55, 'r')
+text(c, ML, 136, '상행 통과량 (명)', 10.5, 'R', K55)
 data = {}
 for nm, cid, col in [('연속형', 'aik_e1_g0_cont', CONT), ('분절형', 'aik_e1_g0_frag', FRAG)]:
     s = prof[prof.cell_id == cid].sort_values('boundary_order')
@@ -335,16 +348,17 @@ for k, (nm, col) in enumerate([('연속형', CONT), ('분절형', FRAG)]):
     for b in range(8):
         text(c, ax.X(b + 1), ty + k * 20, fmt_int(data[nm][b]), 10.5, 'R', K75, 'c')
 # right notes
-nx = 700
+nx = 696
 text(c, nx, 160, '읽는 법', 11, 'B', K55)
 yy = wrap(c, nx, 184, 'U₁은 1F→2F 경계 통과량이며 건물 전체 입장객 수가 아니다.'.replace('₁', '_{1}'), 200, 12, 'R', K75, 1.5)
 yy = wrap(c, nx, yy + 14, '연속형에서 U_{8}/U_{1} = 3.6% (반복별 비율의 평균)', 200, 12, 'B', K100, 1.5)
 yy = wrap(c, nx, yy + 14, '분절형의 첫 경계 U는 연속형보다 20.6% 낮다. 건물 진입 감소율이 아니라 셀별 반복 평균의 비교다.', 200, 12, 'R', K75, 1.5)
+yy = wrap(c, nx, yy + 14, 'γ = 0은 앵커 비중 효용항만 0으로 둔 조건이다. 도착·층 선택·이동 저항·체류·퇴장 규칙은 그대로이므로 이동 마찰만의 자연 상태가 아니다.', 200, 11, 'R', K55, 1.5)
 d.note('chart', 'U profile g0: 12,346→448 cont; 9,802→408 frag')
 
 # ---------------------------------------------------------------- 11 AUFR local
 c = d.slide('04 층간 상행유량 감소와 프로그램 구성', '상행유량은 층마다 같은 비율로 줄지 않았다',
-            '유인 계수 γ = 0 · 경계 2–8의 국소 AUFR 평균과 반복 분포의 2.5–97.5% 구간', SRC)
+            '추가 앵커 유인이 없는 조건(γ = 0) · 경계 2–8의 국소 AUFR 평균(선)과 200회 반복값의 2.5–97.5 백분위 구간(음영)', SRC)
 ax = Ax(ML + 54, 150, ML + 480, 390, (2, 8), (0.40, 0.80))
 for v in (0.4, 0.5, 0.6, 0.7, 0.8):
     line(c, ax.x0 - 20, ax.Yv(v), ax.x1 + 20, ax.Yv(v), K12, .75)
@@ -360,7 +374,6 @@ for nm, cid, col in [('연속형', 'aik_e1_g0_cont', CONT), ('분절형', 'aik_e
         dot(c, p[0], p[1], 3.5, col)
     last = s.AUFR_mean.iloc[-1]
     text(c, ax.X(8) + 14, ax.Yv(last) + (-2 if nm == '연속형' else 16), f'{nm}  {last*100:.1f}%', 12, 'B', col)
-xl = ['U₂/U₁', 'U₃/U₂', 'U₄/U₃', 'U₅/U₄', 'U₆/U₅', 'U₇/U₆', 'U₈/U₇']
 xl = ['U_{2}/U_{1}', 'U_{3}/U_{2}', 'U_{4}/U_{3}', 'U_{5}/U_{4}', 'U_{6}/U_{5}', 'U_{7}/U_{6}', 'U_{8}/U_{7}']
 for k, b in enumerate(range(2, 9)):
     text(c, ax.X(b), 412, xl[k], 10.5, 'R', K75, 'c')
@@ -370,6 +383,7 @@ fc = shape[shape.circ == 'cont'].iloc[0]; ff = shape[shape.circ == 'frag'].iloc[
 text(c, nx - 60, 160, '읽는 법', 11, 'B', K55)
 yy = wrap(c, nx - 60, 184, '일정한 비율로 줄었다면 선이 수평이어야 한다. 로그 선형 모형 대비 경계 요인 모형의 F 검정은 연속형 F = %s, 분절형 F = %s (p<.001)였다.' % (f'{fc.F:,.0f}', f'{ff.F:,.0f}'), 224, 12, 'R', K75, 1.5)
 yy = wrap(c, nx - 60, yy + 12, '국소 AUFR 51.7%는 직전 경계 대비 유지를 뜻하며, 첫 경계 대비 U_{8}/U_{1} = 3.6%와 다른 값이다.', 224, 12, 'B', K100, 1.5)
+yy = wrap(c, nx - 60, yy + 12, '음영은 200회 반복값이 퍼진 범위(2.5–97.5 백분위)이며, 평균의 95% 신뢰구간이 아니다.', 224, 11, 'R', K55, 1.5)
 d.note('chart', 'local AUFR g0 cont/frag with 2.5–97.5% bands')
 
 # ---------------------------------------------------------------- 12 AUFR vs contrast
@@ -394,19 +408,21 @@ for i, g in enumerate([0, 2, 4, 8]):
     line(c, ax.X(lo_), yy, ax.X(hi_), yy, col, 2)
     line(c, ax.X(lo_), yy - 5, ax.X(lo_), yy + 5, col, 1.5); line(c, ax.X(hi_), yy - 5, ax.X(hi_), yy + 5, col, 1.5)
     dot(c, ax.X(est), yy, 5.5, col if solid else Color(1, 1, 1), col, 1.6)
-    sgn = '+' if est >= 0 else '−'
-    text(c, ax.X(hi_) + 14, yy + 4, f'{sgn}{abs(est):.1f}%' if g else '−0.1% (CI가 0 포함)' if est < 0 else f'+{est:.1f}%', 13, 'B', col)
-    if g:
-        text(c, ax.X(hi_) + 14, yy + 20, f'95% CI {lo_:.1f} – {hi_:.1f}', 10, 'R', K55)
-yb = 450
-line(c, ML, yb - 12, W - ML, yb - 12, K12, .75)
+    sg = lambda v, nd=1: ('−' if v < 0 else '+' if v > 0 else '') + f'{abs(v):.{nd}f}'
+    nd = 2 if g == 0 else 1
+    text(c, ax.X(hi_) + 14, yy + 4, f'{sg(est, nd)}%', 13, 'B', col, halo=True)
+    sm = lambda v, nd=1: ('−' if v < 0 else '') + f'{abs(v):.{nd}f}'
+    ci = f'95% CI {sm(lo_, nd)} – {sm(hi_, nd)}' + (' · 0 포함' if lo_ < 0 < hi_ else '')
+    text(c, ax.X(hi_) + 14, yy + 20, ci, 10, 'R', K55, halo=True)
+yb = 462
+line(c, ML, yb - 18, W - ML, yb - 18, K12, .75)
 text(c, ML, yb + 6, '유인 계수가 클수록 관계가 컸다. 다만 목적지 효용에 γ × x_{j}가 이미 들어 있으므로 모형 구조 안의 반응이며, 외부 실측으로 검증한 효과가 아니다.', 11.5, 'R', K75)
 d.note('chart', 'forest-like: +6.0/+10.9/+18.4% with CI, γ0 control')
 
 # ---------------------------------------------------------------- 13 U auxiliary
 c = d.slide('04 층간 상행유량 감소와 프로그램 구성', '절대 유량 변동은 위층 비중으로 더 잘 설명됐다',
             '보조 분석 · 절대 상행유량 U의 잔여 deviance 감소율 · AUFR 결과와 다른 통계량이다', SRC)
-text(c, ML, 142, 'γ = 4 · 연속형 (점) 과 양의 γ 여섯 조건의 범위 (선)', 12, 'R', K55)
+text(c, ML, 142, '점: γ = 4 연속형  ·  선: 양의 γ 여섯 조건(γ = 2·4·8 × 두 동선)의 최솟값–최댓값 범위이며 신뢰구간이 아니다', 12, 'R', K55)
 cs = cons[cons.exp == 'e1']
 preds = [('adjacent contrast (Delta)', 'Δx', '인접층 비중 차이'), ('upper-floor program', 'x_{upper}', '바로 위층 비중'),
          ('mean program above boundary', 'M_{b}', '경계 위쪽 평균 비중')]
@@ -423,7 +439,7 @@ for i, (key, sym, nm) in enumerate(preds):
     line(c, ax.X(lo_), yy, ax.X(hi_), yy, K55, 2)
     dot(c, ax.X(v4), yy, 7, CONT)
     text(c, ax.X(v4), yy - 14, f'{v4:.1f}%', 13, 'B', CONT, 'c')
-    text(c, ax.X(hi_) + 12, yy + 4, f'범위 {lo_:.0f}–{hi_:.0f}%', 10.5, 'R', K55)
+    text(c, ax.X(hi_) + 12, yy + 4, f'범위 {lo_:.0f}–{hi_:.0f}%', 10.5, 'R', K55, halo=True)
 text(c, (ax.x0 + ax.x1) / 2, 442, '고정효과 후 남은 deviance의 감소율 (변수를 하나씩 추가한 모형)', 10.5, 'R', K55, 'c')
 line(c, ML, 458, W - ML, 458, K12, .75)
 text(c, ML, 478, '세 비율을 더해 기여율로 읽지 않으며, 특정 앵커 때문에 이동한 보행자 비율이 아니다. 앞 장의 AUFR 상대 변화와 합치지 않는다.', 11.5, 'R', K75)
@@ -450,8 +466,8 @@ for i, g in enumerate([2, 4, 8]):
     line(c, ax.X(lo_), yy - 6, ax.X(lo_), yy + 6, col, 1.5); line(c, ax.X(hi_), yy - 6, ax.X(hi_), yy + 6, col, 1.5)
     dot(c, ax.X(est), yy, 6, col if excl else Color(1, 1, 1), col, 1.8)
     sg = lambda v: ('−' if v < 0 else '') + f'{abs(v):.1f}'
-    text(c, ax.X(hi_) + 14, yy - 2, f'{est:.1f}%', 14, 'B', col)
-    text(c, ax.X(hi_) + 14, yy + 15, f'[{sg(lo_)}, {sg(hi_)}] · CI가 0을 {"제외" if excl else "포함"}', 10.5, 'R', K55)
+    text(c, ax.X(hi_) + 14, yy - 2, f'{est:.1f}%', 14, 'B', col, halo=True)
+    text(c, ax.X(hi_) + 14, yy + 15, f'95% CI [{sg(lo_)}, {sg(hi_)}] · 0을 {"제외" if excl else "포함"}', 10.5, 'R', K55, halo=True)
     d.note('forest', f'γ={g} {est:.1f} [{lo_:.1f},{hi_:.1f}]')
 nx = 730
 yy = wrap(c, nx, 190, 'γ = 2에서만 신뢰구간이 0을 제외했다.', 174, 12, 'B', K100, 1.5)
@@ -474,17 +490,17 @@ for j, p in enumerate(['TOP1', 'STEP3', 'UNIFORM', 'LOW3']):
     text(c, x, 148, p, 14, 'B', SC[p])
     text(c, x, 165, names[p], 11, 'R', K55)
     for k, fl in enumerate(range(9, 1, -1)):
-        yy = 180 + k * 33
+        yy = 180 + k * 31
         v = share[p][fl]
         rect(c, x, yy, gw - 50, 20, fill=None, stroke=None)
         rect(c, x, yy + 2, (gw - 50) * v / .85, 18, fill=SC[p])
         text(c, x + (gw - 50) * v / .85 + 6, yy + 16, f'{v:.2f}' if v != .107143 else '0.107', 11, 'R', K100)
-    line(c, x, 450, x + gw - 30, 450, K100, .75)
-    text(c, x, 470, f'2–9층 합계  {sum(share[p].values()):.2f}', 11.5, 'B', K100)
+    line(c, x, 436, x + gw - 30, 436, K100, .75)
+    text(c, x, 456, f'2–9층 합계  {sum(share[p].values()):.2f}', 11.5, 'B', K100)
 for k, fl in enumerate(range(9, 1, -1)):
-    text(c, gx0 - 12, 180 + k * 33 + 16, f'{fl}F', 11.5, 'R', K75, 'r')
+    text(c, gx0 - 12, 180 + k * 31 + 16, f'{fl}F', 11.5, 'R', K75, 'r')
 text(c, gx0 - 12, 150, '층', 10.5, 'R', K55, 'r')
-text(c, ML + 44, 494, '공통: 1층 앵커 비중 0.05 고정', 10.5, 'R', K55)
+text(c, ML + 44, 482, '공통: 1층 앵커 비중 0.05 고정 · TOP1의 2–8층 값은 0.107143', 10.5, 'R', K55)
 d.note('matrix', 'anchor shares TOP1/STEP3/UNIFORM/LOW3 sums 1.60')
 
 # ---------------------------------------------------------------- 16 placement results
@@ -513,8 +529,8 @@ for b in range(1, 9):
 text(c, (ax.x0 + ax.x1) / 2 + 20, 440, '경계 b  (1 = 1F→2F … 8 = 8F→9F)', 10.5, 'R', K55, 'c')
 # table
 tx = 672
-text(c, tx, 160, '최종 값 (4일 합계의 반복 평균)', 11, 'B', K55)
-hdr = [('배치', tx), ('T', tx + 86), ('U_{8}', tx + 142), ('R', tx + 214)]
+text(c, tx, 160, '최종 값 · 100회 반복 평균', 11, 'B', K55)
+hdr = [('배치', tx), ('T', tx + 98), ('U_{8}', tx + 158), ('R', tx + 226)]
 for h, x in hdr:
     text(c, x, 186, h, 11.5, 'B', K75, 'r' if h != '배치' else 'l')
 line(c, tx, 194, W - ML, 194, K30, .75)
@@ -523,9 +539,9 @@ for i, p in enumerate(['TOP1', 'STEP3', 'UNIFORM', 'LOW3']):
     u8 = e2[(e2.pattern == p) & (e2.gamma == 4) & (e2.circ == 'cont') & (e2.boundary_order == 8)].U_mean.iloc[0]
     yy = 220 + i * 30
     text(c, tx, yy, p, 12, 'B', SC[p])
-    text(c, tx + 86, yy, f'{r.T_mean*100:.1f}%', 12, 'R', K100, 'r')
-    text(c, tx + 142, yy, f'{u8:,.0f}', 12, 'R', K100, 'r')
-    text(c, tx + 214, yy, f'{r.R_mean*100:.1f}%', 12, 'R', K100, 'r')
+    text(c, tx + 98, yy, f'{r.T_mean*100:.1f}%', 12, 'R', K100, 'r')
+    text(c, tx + 158, yy, f'{u8:,.0f}', 12, 'R', K100, 'r')
+    text(c, tx + 226, yy, f'{r.R_mean*100:.1f}%', 12, 'R', K100, 'r')
     d.note('table', f'{p} T={r.T_mean*100:.1f} U8={u8:,.0f} R={r.R_mean*100:.1f}')
 line(c, tx, 336, W - ML, 336, K30, .75)
 yy = 358
@@ -542,7 +558,7 @@ text(c, ML + 470, 150, '향후 검증 과제', 12, 'B', K55)
 lim = [
     ('비공간적 합성 모형', '실제 평면·시야·동선 네트워크를 직접 재현하지 않았다', '실제 평면의 기하학적 수직동선을 반영한 모형'),
     ('혼잡과 수용량 부재', '상행유량이 커져도 병목·대기·안전·운영 부담은 계산하지 않았다', '혼잡·대기·수용량을 포함한 모델링'),
-    ('가정한 유인 계수와 범위', 'γ는 실측 집객 계수가 아니며, TOP1의 0.85는 E1의 상한 0.5를 넘는다', '업종별 집객력 보정과 더 넓은 배치 범위의 재실험'),
+    ('가정한 유인 계수와 범위', 'γ는 가정한 민감도 값이며, TOP1의 9층 0.85는 E1 층별 상한 0.5 밖이다', '업종별 집객력 보정과 더 넓은 배치 범위의 재실험'),
     ('결과 변수의 범위', 'U는 경계 통과 연인원이며 고유 방문객·체류·소비가 아니다', '실제 시설의 관측 유량으로 규칙을 보정·외부 검증'),
 ]
 for i, (t, s, f) in enumerate(lim):
@@ -550,8 +566,11 @@ for i, (t, s, f) in enumerate(lim):
     line(c, ML, y0, W - ML, y0, K12, .75)
     text(c, ML, y0 + 34, f'{i+1}', 22, 'R', K30)
     text(c, ML + 36, y0 + 28, t, 14, 'B')
-    wrap(c, ML + 36, y0 + 50, s, 400, 11.5, 'R', K75, 1.4)
-    text(c, ML + 446, y0 + 38, '→', 16, 'R', K55)
+    assert tw(s, 11.5) <= 376, s
+    text(c, ML + 36, y0 + 50, s, 11.5, 'R', K75)
+    # limitation -> follow-up connector, aligned with the task text's x-height
+    line(c, ML + 424, y0 + 27, ML + 452, y0 + 27, K55, .9)
+    c.setFillColor(K55); pth = c.beginPath(); pth.moveTo(ML + 456, Y(y0 + 27)); pth.lineTo(ML + 450, Y(y0 + 24)); pth.lineTo(ML + 450, Y(y0 + 30)); pth.close(); c.drawPath(pth, stroke=0, fill=1)
     wrap(c, ML + 470, y0 + 32, f, 330, 13, 'R', K100, 1.4)
     d.note('limit', f'{t} → {f}')
 line(c, ML, 166 + 4 * 76, W - ML, 166 + 4 * 76, K12, .75)
@@ -561,7 +580,7 @@ c = d.slide('06 현재까지의 분석 결과와 향후 검증', '현재까지�
             '모형 안에서 확인된 결과와, 앞으로 검증할 내용을 구분해 정리한다', '출처: 수정 논문 4–5장 · 분석 CSV')
 text(c, ML, 146, '현재까지 확인한 것 (모형 안의 결과)', 12, 'B', K55)
 res = [
-    ('절대 유량과 국소 AUFR는 다른 정보를 준다', '연속형 γ=0에서 U_{8}/U_{1}은 3.6%, 마지막 국소 AUFR는 51.7%였다.'),
+    ('절대 유량과 국소 AUFR는 다른 정보를 준다', '추가 앵커 유인이 없는 연속형(γ=0)에서 U_{8}/U_{1}은 3.6%, 마지막 국소 AUFR는 51.7%였다.'),
     ('프로그램 차이와 AUFR의 관계는 유인 계수가 클수록 컸다', 'Δx 0.1 증가당 AUFR 상대 변화는 γ=2·4·8에서 약 +6.0·+10.9·+18.4%였다.'),
     ('이동 저항의 약화 효과는 조건마다 달랐다', '기울기 잠식률은 γ=2에서만 95% CI가 0을 제외했다 (6.7%).'),
     ('네 배치 중 TOP1이 최상단 상대 유량에 가장 유리했다', 'γ=4 연속형에서 T = 58.7%, U_{8} 평균 약 9,112명 — 보편적 최적안이 아니다.'),
@@ -588,6 +607,6 @@ text(c, ML, 410, '기여', 11, 'B', K55)
 wrap(c, ML, 430, '층간 경계 지표와 프로그램 요약변수를 분리하고, 유인 강도·이동 저항·배치를 같은 실험 틀에서 비교했다.', 520, 12.5, 'R', K100, 1.45)
 
 d.save()
-with open(OUT.replace('.pdf', '_inventory.csv'), 'w', newline='') as f:
+with open(Path(OUT).with_name('title_inventory.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.writer(f); w.writerow(['slide', 'kind', 'text']); w.writerows(d.inventory)
 print('built', d.n)
