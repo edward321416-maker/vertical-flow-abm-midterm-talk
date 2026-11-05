@@ -1,0 +1,151 @@
+slide,check,value,result
+0,font /AAAAAA+DejaVuSans embedded,True,PASS
+0,font /AAAAAA+DejaVuSans-Bold embedded,True,PASS
+0,font /AAAAAA+NanumBarunGothic embedded,True,PASS
+0,font /AAAAAA+NanumBarunGothicBold embedded,True,PASS
+0,font /AAAAAB+NanumBarunGothic embedded,True,PASS
+0,font /AAAAAB+NanumBarunGothicBold embedded,True,PASS
+1,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+1,nothing outside the 56pt side margins (±4pt),0 [],PASS
+1,text inside 16pt safe area,0 outside,PASS
+1,overlapping text objects,0,PASS
+1,min font size (pt; subscripts are 0.66x),10.0,PASS
+1,text objects 7.5–10pt (non-subscript small text),0,INFO
+1,white background (corners),"[255, 255, 255]",PASS
+1,coloured pixel share,0.00%,PASS
+2,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+2,nothing outside the 56pt side margins (±4pt),0 [],PASS
+2,text inside 16pt safe area,0 outside,PASS
+2,overlapping text objects,0,PASS
+2,min font size (pt; subscripts are 0.66x),10.0,PASS
+2,text objects 7.5–10pt (non-subscript small text),0,INFO
+2,white background (corners),"[255, 255, 255]",PASS
+2,coloured pixel share,0.00%,PASS
+3,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+3,nothing outside the 56pt side margins (±4pt),0 [],PASS
+3,text inside 16pt safe area,0 outside,PASS
+3,overlapping text objects,0,PASS
+3,min font size (pt; subscripts are 0.66x),10.0,PASS
+3,text objects 7.5–10pt (non-subscript small text),0,INFO
+3,white background (corners),"[255, 255, 255]",PASS
+3,coloured pixel share,1.28%,PASS
+4,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+4,nothing outside the 56pt side margins (±4pt),0 [],PASS
+4,text inside 16pt safe area,0 outside,PASS
+4,overlapping text objects,0,PASS
+4,min font size (pt; subscripts are 0.66x),7.9,PASS
+4,text objects 7.5–10pt (non-subscript small text),5,INFO
+4,white background (corners),"[255, 255, 255]",PASS
+4,coloured pixel share,0.00%,PASS
+5,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+5,nothing outside the 56pt side margins (±4pt),0 [],PASS
+5,text inside 16pt safe area,0 outside,PASS
+5,overlapping text objects,0,PASS
+5,min font size (pt; subscripts are 0.66x),10.0,PASS
+5,text objects 7.5–10pt (non-subscript small text),0,INFO
+5,white background (corners),"[255, 255, 255]",PASS
+5,coloured pixel share,0.00%,PASS
+6,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+6,nothing outside the 56pt side margins (±4pt),0 [],PASS
+6,text inside 16pt safe area,0 outside,PASS
+6,overlapping text objects,0,PASS
+6,min font size (pt; subscripts are 0.66x),9.5,PASS
+6,text objects 7.5–10pt (non-subscript small text),4,INFO
+6,white background (corners),"[255, 255, 255]",PASS
+6,coloured pixel share,0.00%,PASS
+7,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+7,nothing outside the 56pt side margins (±4pt),0 [],PASS
+7,text inside 16pt safe area,0 outside,PASS
+7,overlapping text objects,0,PASS
+7,min font size (pt; subscripts are 0.66x),6.9,PASS
+7,text objects 7.5–10pt (non-subscript small text),13,INFO
+7,white background (corners),"[255, 255, 255]",PASS
+7,coloured pixel share,0.00%,PASS
+8,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+8,nothing outside the 56pt side margins (±4pt),0 [],PASS
+8,text inside 16pt safe area,0 outside,PASS
+8,overlapping text objects,0,PASS
+8,min font size (pt; subscripts are 0.66x),8.2,PASS
+8,text objects 7.5–10pt (non-subscript small text),10,INFO
+8,white background (corners),"[255, 255, 255]",PASS
+8,coloured pixel share,0.00%,PASS
+9,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+9,nothing outside the 56pt side margins (±4pt),0 [],PASS
+9,text inside 16pt safe area,0 outside,PASS
+9,overlapping text objects,0,PASS
+9,min font size (pt; subscripts are 0.66x),7.3,PASS
+9,text objects 7.5–10pt (non-subscript small text),6,INFO
+9,white background (corners),"[255, 255, 255]",PASS
+9,coloured pixel share,0.88%,PASS
+10,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+10,nothing outside the 56pt side margins (±4pt),0 [],PASS
+10,text inside 16pt safe area,0 outside,PASS
+10,overlapping text objects,0,PASS
+10,min font size (pt; subscripts are 0.66x),7.9,PASS
+10,text objects 7.5–10pt (non-subscript small text),3,INFO
+10,white background (corners),"[255, 255, 255]",PASS
+10,coloured pixel share,0.83%,PASS
+11,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+11,nothing outside the 56pt side margins (±4pt),0 [],PASS
+11,text inside 16pt safe area,0 outside,PASS
+11,overlapping text objects,0,PASS
+11,min font size (pt; subscripts are 0.66x),6.9,PASS
+11,text objects 7.5–10pt (non-subscript small text),2,INFO
+11,white background (corners),"[255, 255, 255]",PASS
+11,coloured pixel share,0.62%,PASS
+12,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+12,nothing outside the 56pt side margins (±4pt),0 [],PASS
+12,text inside 16pt safe area,0 outside,PASS
+12,overlapping text objects,0,PASS
+12,min font size (pt; subscripts are 0.66x),7.6,PASS
+12,text objects 7.5–10pt (non-subscript small text),3,INFO
+12,white background (corners),"[255, 255, 255]",PASS
+12,coloured pixel share,0.21%,PASS
+13,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+13,nothing outside the 56pt side margins (±4pt),0 [],PASS
+13,text inside 16pt safe area,0 outside,PASS
+13,overlapping text objects,0,PASS
+13,min font size (pt; subscripts are 0.66x),10.0,PASS
+13,text objects 7.5–10pt (non-subscript small text),0,INFO
+13,white background (corners),"[255, 255, 255]",PASS
+13,coloured pixel share,0.19%,PASS
+14,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+14,nothing outside the 56pt side margins (±4pt),0 [],PASS
+14,text inside 16pt safe area,0 outside,PASS
+14,overlapping text objects,0,PASS
+14,min font size (pt; subscripts are 0.66x),10.0,PASS
+14,text objects 7.5–10pt (non-subscript small text),3,INFO
+14,white background (corners),"[255, 255, 255]",PASS
+14,coloured pixel share,0.11%,PASS
+15,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+15,nothing outside the 56pt side margins (±4pt),0 [],PASS
+15,text inside 16pt safe area,0 outside,PASS
+15,overlapping text objects,0,PASS
+15,min font size (pt; subscripts are 0.66x),10.0,PASS
+15,text objects 7.5–10pt (non-subscript small text),0,INFO
+15,white background (corners),"[255, 255, 255]",PASS
+15,coloured pixel share,2.91%,PASS
+16,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+16,nothing outside the 56pt side margins (±4pt),0 [],PASS
+16,text inside 16pt safe area,0 outside,PASS
+16,overlapping text objects,0,PASS
+16,min font size (pt; subscripts are 0.66x),6.9,PASS
+16,text objects 7.5–10pt (non-subscript small text),4,INFO
+16,white background (corners),"[255, 255, 255]",PASS
+16,coloured pixel share,0.89%,PASS
+17,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+17,nothing outside the 56pt side margins (±4pt),0 [],PASS
+17,text inside 16pt safe area,0 outside,PASS
+17,overlapping text objects,0,PASS
+17,min font size (pt; subscripts are 0.66x),10.0,PASS
+17,text objects 7.5–10pt (non-subscript small text),0,INFO
+17,white background (corners),"[255, 255, 255]",PASS
+17,coloured pixel share,0.00%,PASS
+18,graphics (lines/bars/boxes) inside 16pt safe area,0 outside [],PASS
+18,nothing outside the 56pt side margins (±4pt),0 [],PASS
+18,text inside 16pt safe area,0 outside,PASS
+18,overlapping text objects,0,PASS
+18,min font size (pt; subscripts are 0.66x),7.3,PASS
+18,text objects 7.5–10pt (non-subscript small text),0,INFO
+18,white background (corners),"[255, 255, 255]",PASS
+18,coloured pixel share,0.00%,PASS

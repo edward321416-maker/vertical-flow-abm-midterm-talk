@@ -1,0 +1,11 @@
+# Tested versions (Python 3.11+). Fonts are system files, not pip packages:
+#   NanumBarunGothic.ttf / NanumBarunGothicBold.ttf  (e.g. apt install fonts-nanum)
+#   DejaVuSans.ttf / DejaVuSans-Bold.ttf             (e.g. apt install fonts-dejavu-core)
+# or place the four .ttf files in cloud_task/fonts/ or $VF_FONT_DIR.
+reportlab==5.0.1
+pandas==3.0.5
+numpy==2.5.3
+# QA scripts only
+pypdfium2==5.13.0
+pypdf==6.17.0
+pillow==12.3.0
