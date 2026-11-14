@@ -1,0 +1,51 @@
+name: One-time retrieve JAIK public HWP template
+on:
+  push:
+    branches:
+      - audit/jaik-template-fetch-20261114
+permissions:
+  contents: read
+jobs:
+  retrieve-public-template:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - name: Download exact file from publisher
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          URL='https://www.aik.or.kr/downloads/pages/pages_submission/aik_journal_sample_20250218.hwp'
+          curl --fail --location --retry 2 --connect-timeout 12 --max-time 95 --user-agent 'Mozilla/5.0 (compatible; PDF template verification)' --output out/aik_journal_sample_20250218.hwp "$URL"
+          test "$(wc -c < out/aik_journal_sample_20250218.hwp)" -gt 1024
+          file out/aik_journal_sample_20250218.hwp | tee out/source_signature.txt
+          sha256sum out/aik_journal_sample_20250218.hwp | tee out/source_sha256.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('out/aik_journal_sample_20250218.hwp')
+          h = p.read_bytes()[:8]
+          print('signature8 =', h.hex())
+          if not (h.startswith(bytes.fromhex('d0cf11e0a1b11ae1')) or h.startswith(b'PK')):
+              raise SystemExit('Unexpected signature: not HWP OLE or ZIP')
+          PY
+      - name: Convert template to PDF (do not alter HWP)
+        if: success()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libreoffice-writer poppler-utils
+          timeout 100s libreoffice -env:UserInstallation=file:///tmp/jaik-lo-profile --headless --convert-to pdf --outdir out out/aik_journal_sample_20250218.hwp
+          if test -s out/aik_journal_sample_20250218.pdf; then
+            pdfinfo out/aik_journal_sample_20250218.pdf | head -25 | tee out/pdfinfo.txt
+            pdftotext out/aik_journal_sample_20250218.pdf out/pdf_text.txt
+          fi
+      - name: Upload source and verification outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jaik-official-hwp-one-time
+          path: out/
+          if-no-files-found: warn
+          retention-days: 2
