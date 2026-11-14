@@ -1,8 +1,5 @@
 name: One-time retrieve JAIK public HWP template
-on:
-  push:
-    branches:
-      - audit/jaik-template-fetch-20261114
+on: workflow_dispatch
 permissions:
   contents: read
 jobs:
