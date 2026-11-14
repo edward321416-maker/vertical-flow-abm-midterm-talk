@@ -41,6 +41,30 @@ jobs:
             pdfinfo out/aik_journal_sample_20250218.pdf | head -25 | tee out/pdfinfo.txt
             pdftotext out/aik_journal_sample_20250218.pdf out/pdf_text.txt
           fi
+      - name: Prepare isolated legacy HWP5 converter
+        if: success()
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Extract HWP5 styles and experimental ODT/PDF
+        if: success()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv /tmp/jaik-hwp-converter
+          /tmp/jaik-hwp-converter/bin/python -m pip install --quiet --pre 'pyhwp==0.1b15' 'olefile==0.47' 'lxml==5.4.0'
+          HWP='out/aik_journal_sample_20250218.hwp'
+          /tmp/jaik-hwp-converter/bin/hwp5txt "$HWP" > out/hwp5_text.txt || true
+          /tmp/jaik-hwp-converter/bin/hwp5proc xml "$HWP" > out/hwp5_structure.xml || true
+          /tmp/jaik-hwp-converter/bin/hwp5odt --output=out/approximate_template.odt "$HWP" || true
+          if test -s out/approximate_template.odt; then
+            timeout 60s libreoffice -env:UserInstallation=file:///tmp/jaik-lo-pyhwp --headless --convert-to pdf --outdir out out/approximate_template.odt || true
+            if test -s out/approximate_template.pdf; then
+              pdfinfo out/approximate_template.pdf | tee out/approximate_pdfinfo.txt
+              pdftotext out/approximate_template.pdf out/approximate_pdftotext.txt
+            fi
+          fi
       - name: Upload source and verification outputs
         if: always()
         uses: actions/upload-artifact@v4
