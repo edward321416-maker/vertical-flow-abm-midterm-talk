@@ -53,7 +53,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m venv /tmp/jaik-hwp-converter
-          /tmp/jaik-hwp-converter/bin/python -m pip install --quiet --pre 'pyhwp==0.1b15' 'olefile==0.47' 'lxml==5.4.0'
+          /tmp/jaik-hwp-converter/bin/python -m pip install --quiet --pre 'pyhwp==0.1b15' 'olefile==0.47' 'lxml==5.4.0' 'six==1.16.0'
           HWP='out/aik_journal_sample_20250218.hwp'
           /tmp/jaik-hwp-converter/bin/hwp5txt "$HWP" > out/hwp5_text.txt || true
           /tmp/jaik-hwp-converter/bin/hwp5proc xml "$HWP" > out/hwp5_structure.xml || true
