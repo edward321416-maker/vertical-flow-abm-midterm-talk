@@ -1,0 +1,26 @@
+--- a/Thesis_Revision8_Layout_Corrected.tex
++++ b/Thesis_Revision9_Readable_Wordspacing.tex
+@@ -56,6 +56,10 @@
+ \vspace{2mm}\noindent\rule{\textwidth}{.35pt}
+ \vspace{4mm}
+ \end{@twocolumnfalse}}]
++% Preserve legible word separation in the two-column Korean body.
++% Explicit TeX interword glue prevents visual collapse under xeCJK+sloppy.
++\spaceskip=3.2pt plus 1.5pt minus .4pt\relax
++\xspaceskip=3.2pt plus 1.5pt minus .4pt\relax
+ \section{서론}\label{uxc11cuxb860}
+ 
+ \subsection{연구의 배경과 문제}\label{uxc5f0uxad6cuxc758-uxbc30uxacbduxacfc-uxbb38uxc81c}
+@@ -180,9 +184,9 @@
+ 
+ \subsection{RQ3: 동선비용에 따른 유량과 프로그램 반응}\label{rq3-uxbd88uxd3b8uxd55c-uxb3d9uxc120uxc740-uxc720uxb7c9uxacfc-uxd504uxb85cuxadf8uxb7a8-uxbc18uxc751uxc744-uxc5b4uxb5bbuxac8c-uxbc14uxafb8uxb294uxac00}
+ 
+-여기서는 \textbf{불편한 동선이 기본 통과량을 줄이는지}와 \textbf{프로그램 차이에 대한 반응까지 약하게 만드는지}를 구분해 묻는다. 앞서 γ=0에서 분절형 동선의 첫 경계 통과량은 연속형보다 20.6\% 작았다. 이는 유량의 절대 수준에 관한 비교다. 반면 다음 수치는 인접층 프로그램 차이에 대한 \textbf{AUFR 회귀 기울기의 상대적 감소}를 비교한다.
+-
+-프로그램 유인 강도 γ=2에서는 분절형의 반응 기울기가 약 6.72\% 감소하였고 95\% 부트스트랩 신뢰구간(2.69\textasciitilde10.51\%)이 0을 포함하지 않았다. γ=4에서는 약 0.77\%(−4.11\textasciitilde5.22\%), γ=8에서는 약 1.67\%(−6.41\textasciitilde8.56\%)였으나 두 구간은 모두 0을 포함하였다(그림 6). 따라서 마찰이 프로그램 유인을 항상 약화한다거나 전혀 약화하지 않는다고 일반화할 수 없다. 이는 강도별 탐색 결과이며, \textbf{γ=2와 γ=4·8 사이의 차이가 유의하다는 직접 검정은 아니다}. 또한 γ는 프로그램의 유인 강도이며, 실제 동선 마찰은 연속형·분절형 조건에서 따로 바꾼 값이다.
++이번에는 \textbf{동선의 불편함으로 상향 통과량 자체가 \mbox{줄어드는지}} 살핀다. 이어 \textbf{\mbox{프로그램} 차이에 대한 반응도 \mbox{약해지는지}} 확인한다. 앞서 γ=0에서 분절형 동선의 첫 경계 통과량은 \mbox{연속형보다} 20.6\% 작았다. 이는 유량의 절대 수준에 관한 비교다. 반면 다음 분석에서는 \textbf{\mbox{프로그램} 차이에 대한 AUFR의 \mbox{반응 기울기}}가 동선 조건에 따라 얼마나 달라지는지 \mbox{비교한다}.
++
++프로그램 유인 강도 γ=2에서는 분절형의 반응 \mbox{기울기가} 약 6.72\% 감소하였고 95\% 부트스트랩 신뢰구간(2.69\textasciitilde10.51\%)이 0을 포함하지 않았다. γ=4에서는 약 0.77\%(−4.11\textasciitilde5.22\%), γ=8에서는 약 1.67\%(−6.41\textasciitilde8.56\%)였으나 두 구간은 모두 0을 포함하였다(그림 6). 따라서 마찰이 프로그램 유인을 항상 약화한다거나 전혀 약화하지 않는다고 일반화할 수 없다. 이는 강도별 탐색 결과이며, \textbf{γ=2와 γ=4·8 사이의 차이가 유의하다는 직접 검정은 아니다}. 또한 γ는 프로그램의 유인 강도이며, 실제 동선 마찰은 연속형·분절형 조건에서 따로 바꾼 값이다.
+ 
+ \begin{center}
+ \includegraphics[width=\linewidth,height=6.7cm,keepaspectratio]{figures/fig5_rq3.png}\par\vspace{2pt}\begin{minipage}{\linewidth}\centering\sffamily\fontsize{8}{12}\selectfont Figure 6. Change in the program-response slope under higher travel cost, with bootstrap confidence intervals\end{minipage}\end{center}
