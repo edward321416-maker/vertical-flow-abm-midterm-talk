@@ -33,7 +33,7 @@
 ### B2. 2024 국제 디지털 건축 연구 — 상업시설 보행량의 관측 검증 모범
 **Zhong, Y., Tan, Z. S., Mavros, P., Hölscher, C., & Tunçer, B.**, *Estimating Relative Pedestrian Crowd Distribution: A Visibility-Graph-Based Analysis Workflow for Malls During Early Design Stage*. eCAADe 2024 Proceedings, Vol. 2, pp. 433–442.
 - [eCAADe 공식 회의록 원문](https://ecaade.org/current/wp-content/uploads/2024/10/eCAADe2024_Volume2_240927-R.pdf).
-- **원문 구조 확인:** 제목/초록에서 보행량 예측의 실무 문제 → ABM 및 space syntax의 초기설계 한계 → 가시성 그래프 대안 → 현장 상업시설 사례검증/ABM 비교 → 적용 영역을 명시. 본문에도 \`BACKGROUND / METHODS / VALIDATION / CONCLUSION / LIMITATIONS AND FUTURE WORK\`가 별도.
+- **원문 구조 확인:** 제목/초록에서 보행량 예측의 실무 문제 → ABM 및 space syntax의 초기설계 한계 → 가시성 그래프 대안 → 현장 상업시설 사례검증/ABM 비교 → 적용 영역을 명시. 본문에도 `BACKGROUND / METHODS / VALIDATION / CONCLUSION / LIMITATIONS AND FUTURE WORK`가 별도.
 - **비교 포인트:** 현장 보행관측과 비교하고, 결과의 정확성·효율을 각기 다른 근거로 판단하며, 마지막에 단일 시설/지역 데이터 의존이라는 한계를 명시.
 - **우리 논문에 적용:** **두타몰 '실측'이라고 오인할 정도로 가상 비교만 하고 있는 부분을 엄격히 수정**. 실제 데이터와 직접 검증하지 않았으면 'case-study validated' 같은 표현을 사용하지 않는다.
 - 접근: 공식 회의록의 실제 433–442쪽 텍스트 확인(독립 파일/외부 PDF 다운로드 조건에 따라 PDF 이미지 검토는 제한됨). 수상 이력은 주장하지 않음.
@@ -57,7 +57,7 @@
 **Grimm, V. et al. (2020)**, *The ODD Protocol for Describing Agent-Based and Other Simulation Models: A Second Update to Improve Clarity, Replication, and Structural Realism*. *Journal of Artificial Societies and Social Simulation* 23(2), 7. DOI [10.18564/jasss.4259](https://doi.org/10.18564/jasss.4259).
 - 실제 원문 [JASSS](https://jasss.soc.surrey.ac.uk/23/2/7.html), 미국 지질조사국 [USGS](https://www.usgs.gov/publications/odd-protocol-describing-agent-based-and-other-simulation-models-a-second-update).
 - **내용 확인:** Overview, Design concepts, Details로 ABM 설명의 **모형 목적과 적합성, 상태변수, 입력, 과정, 실험결정, 검증·재현성**을 구조화.
-- 우리 저장소에 이미 \`docs/simulation/ODD.md\`가 있으므로 논문 3장은 **본문에 약식 ODD/재현 최소정보**, 전체 보고는 부록/저장소 링크로 연결하면 압축하면서 신뢰성 상승.
+- 우리 저장소에 이미 `docs/simulation/ODD.md`가 있으므로 논문 3장은 **본문에 약식 ODD/재현 최소정보**, 전체 보고는 부록/저장소 링크로 연결하면 압축하면서 신뢰성 상승.
 
 ## C. 학술집필·학회 기준이 공통으로 요구하는 '좋은 연구 서사'
 
